@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Feedback', 'author_id');
     }
+
+    public function isAdmin()
+    {
+        return ($this->role == 1);
+    } 
 }
