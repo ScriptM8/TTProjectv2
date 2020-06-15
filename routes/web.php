@@ -20,3 +20,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/profile', 'UserController@show')->name('profile');
+Route::post('profile', 'UserController@update_profile_img');
+Route::get('/profile/delete', 'UserController@delete');
+
+Route::get('/profile/index', 'AdminController@user_index');
+Route::get('/profile/show/{id?}', 'AdminController@user_show');
+Route::get('/profile/delete/{id?}', 'AdminController@user_delete');

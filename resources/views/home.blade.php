@@ -14,7 +14,11 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    @foreach($errors->all() as $message)
+                        <p class="has-error">{{ $message }}</p>
+                    @endforeach  
+                    
+                    <h4>Hello and welcome to haltura.lv, {{ Auth::user()->name }}</h4>
                 </div>
             </div>
         </div>
