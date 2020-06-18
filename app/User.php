@@ -44,16 +44,16 @@ class User extends Authenticatable
 
     public function recived_feedbacks()
     {
-        return $this->hasMany('App\Feedback', 'target_id');
+        return $this->hasMany('App\Feedbacks', 'target_id');
     }
 
     public function posted_feedbacks()
     {
-        return $this->hasMany('App\Feedback', 'author_id');
+        return $this->hasMany('App\Feedbacks', 'author_id');
     }
 
     public function isAdmin()
     {
         return ($this->role == 1);
-    } 
+    }
 }

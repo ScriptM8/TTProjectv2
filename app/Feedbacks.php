@@ -4,8 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Feedbacks extends Model
 {
+    protected $guarded = [
+        '_token'
+    ];
     public function author_user()
     {
         return $this->belongsTo('App\User', 'id', 'author_id');

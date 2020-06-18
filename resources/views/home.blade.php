@@ -16,12 +16,13 @@
 
                     @foreach($errors->all() as $message)
                         <p class="has-error">{{ $message }}</p>
-                    @endforeach  
-                    
+                    @endforeach
+
                     <h4>Hello and welcome to haltura.lv, {{ Auth::user()->name }}</h4>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

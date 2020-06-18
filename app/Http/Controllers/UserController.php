@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedbacks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +17,9 @@ class UserController extends Controller
 
     public function show()
     {
-        return view('profile', ['user' => Auth::user(), 'role' => Auth::user()->role]);
+        $id = Auth::user()->id; // vajag pie show id?
+        session()->put('target_id', $id);
+        return view('profile', ['feedbacks' => Feedbacks::where('target_id', Auth::user()->id)->get(),'user' => Auth::user(), 'role' => Auth::user()->role]);
     }
 
     public function update_profile_img(Request $request)
@@ -25,8 +28,8 @@ class UserController extends Controller
             'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = Auth::user();
-        $imgName = $user->id.'_profileImg'.time().'.'.request()->profile_img->getClientOriginalExtension();
-        $request->profile_img->storeAs('profile_img',$imgName);
+        $imgName = $user->id . '_profileImg' . time() . '.' . request()->profile_img->getClientOriginalExtension();
+        $request->profile_img->storeAs('profile_img', $imgName);
         $user->profile_img_path = $imgName;
         $user->save();
         return back();
@@ -37,10 +40,10 @@ class UserController extends Controller
         $user = Auth::user();
         Auth::logout();
         if ($user->profile_img_path != 'default_user.png') {
-            Storage::delete('profile_img/'.$user->profile_img_path);
+            Storage::delete('profile_img/' . $user->profile_img_path);
         }
-        User::where('id',$user->id)->delete();
+        User::where('id', $user->id)->delete();
         return view('welcome');
     }
-    
+
 }
