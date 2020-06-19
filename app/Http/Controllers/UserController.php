@@ -14,9 +14,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('profile', ['user' => Auth::user(), 'role' => Auth::user()->role]);
+        return view('profile', ['profile_owner' => User::find($id), 'user' => Auth::user()]);
     }
 
     public function update_profile_img(Request $request)
@@ -32,15 +32,14 @@ class UserController extends Controller
         return back();
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $user = Auth::user();
-        Auth::logout();
+        $user = User::findOrFail($id);
         if ($user->profile_img_path != 'default_user.png') {
             Storage::delete('profile_img/'.$user->profile_img_path);
         }
         User::where('id',$user->id)->delete();
-        return view('welcome');
+        return redirect('/');
     }
     
 }

@@ -6,6 +6,7 @@ use App\Poster;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PosterController extends Controller
 {
@@ -16,9 +17,41 @@ class PosterController extends Controller
      */
     public function index()
     {
-        $posters = Poster::all(); // cits
-        return view('posters', ['posters' => $posters, 
-            'users' => User::all()]);
+        if (!session()->has('category_list')) {
+            //if(true){
+            $temp = Category::all();
+            $category_list = array();
+            for ($i=0; $i < count($temp); $i++) { 
+                $cat = array('id' => $temp[$i]->id ,'name' => $temp[$i]->name, 'checked' => false);
+                array_push($category_list, $cat);
+            }
+            session()->put('category_list', $category_list);
+        }
+        $cat_list = session()->get('category_list');
+        $none_checked = true;
+        for ($i=0; $i < count($cat_list); $i++) { 
+            if($cat_list[$i]['checked'] == true){
+                $none_checked = false;
+            }
+        }
+        if ($none_checked) {
+            $posters = Poster::all();
+        }else{
+            $posters_id = array();
+            for ($i=0; $i < count($cat_list); $i++) {
+                if($cat_list[$i]['checked'] == true){
+                    $post = Poster::where('category_id', '=', $cat_list[$i]['id'])->get();
+                    for ($x=0; $x < count($post); $x++) {
+                        array_push($posters_id, $post[$x]->id);
+                    }
+                }
+            }
+            $posters = Poster::find($posters_id);
+        }
+
+        return view('category_list', ['posters' => $posters, 
+            'users' => User::all(),
+            'cat_list' => session()->get('category_list')]);
     }
 
     /**
@@ -53,7 +86,7 @@ class PosterController extends Controller
         );        
         $this->validate($request, $rules); 
         
-        $poster = new Car();
+        $poster = new Poster();
         $poster->user()->associate(User::findOrFail($request['author_id']));
         $poster->title = $request['title'];
         $poster->description = $request['description'];

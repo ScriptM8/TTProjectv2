@@ -15,10 +15,10 @@ class CreatePostersTable extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('author_id')->references('id')->on('users');
+            $table->foreignId('author_id')->unsigned()->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
             $table->longText('description');
-            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->string('location');
             $table->string('time');
             $table->double('reward');
