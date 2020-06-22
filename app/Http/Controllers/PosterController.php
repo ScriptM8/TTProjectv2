@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Poster;
 use App\User;
 use App\Category;
+use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -119,13 +120,12 @@ class PosterController extends Controller
 
         $category = Category::findOrFail($poster->category_id);
         $photos = Photo::where('poster_id',$id)->get();
-        else {
-            return view('poster_show', ['poster' => $poster,
-                'user' => User::findOrFail($poster->author_id),
-                'currentuser' => $currentuser,
-                'category' => $category,
-                'photos' => $photos]);
-        }
+        return view('poster_show', ['poster' => $poster,
+            'user' => User::findOrFail($poster->author_id),
+            'currentuser' => $currentuser,
+            'category' => $category,
+            'photos' => $photos]);
+
     }
 
     /**
@@ -177,18 +177,19 @@ class PosterController extends Controller
         );
         $this->validate($request, $rules);
 
-        $poster = Poster::findOrFail($id);
-        $poster->user()->associate(User::findOrFail($request['author_id']));
-        $poster->title = $request['title'];
-        $poster->description = $request['description'];
-        $poster->category()->associate(Category::findOrFail($request['category_id']));
-        $poster->location = $request['location'];
-        $poster->time = $request['time'];
-        $poster->reward = $request['reward'];
-        $poster->phone = $request['phone'];
-        $poster->email = $request['email'];
-        $poster->save();
+//        $poster = Poster::findOrFail($id);
+//        $poster->user()->associate(User::findOrFail($request['author_id']));
+//        $poster->title = $request['title'];
+//        $poster->description = $request['description'];
+//        $poster->category()->associate(Category::findOrFail($request['category_id']));
+//        $poster->location = $request['location'];
+//        $poster->time = $request['time'];
+//        $poster->reward = $request['reward'];
+//        $poster->phone = $request['phone'];
+//        $poster->email = $request['email'];
+//        $poster->save();
         // vai te kkas cits?
+        Poster::where('id', $id)->update($request->all());
 
         return redirect('post/'.$poster->id)->withErrors(['msg' => 'Post updated!']);
     }

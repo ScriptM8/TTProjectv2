@@ -18,13 +18,17 @@
                     <h5 class="card-text">Pay: {{ $poster->reward }}</h5>
                     <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
                     <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
-                </div>
 
+                @if($currentuser->id === $user->id)
+                <a class="btn btn-primary" href="post/{{ $poster->id }}/photo/add">Add a new photo</a>
+                @endif
                 @if($photos->count() > 0)
+                    <img src="{{ $photos->first->path }}" alt="Photo for {{ $poster->title }}">
                 @foreach($photos as $photo)
-{{--                    <img src="{{  }}">--}}
+                    <img src="{{ $photo->path }}" alt="Photo for {{ $poster->title }}>
                 @endforeach
                 @endif
+                </div>
             </div>
         </div>
 
@@ -39,10 +43,11 @@
             </div>
             <br>
 
-            @if($role === 1 or $currentuser->id === $user->id)
-                <a class="btn btn-primary" href="post/{{ $poster->id }}/edit">Edit post</a>
+            @if($currentuser->role === 1 or $currentuser->id === $user->id)
+                <a class="btn btn-primary" href="{{ $poster->id }}/edit">Edit post</a>
                 <br>
-                <a class="btn btn-primary" href="post/{{ $poster->id }}/delete">Delete post</a>
+                <br>
+                <a class="btn btn-primary" href="{{ $poster->id }}/delete">Delete post</a>
                 <br>
             @endif
         </div>
