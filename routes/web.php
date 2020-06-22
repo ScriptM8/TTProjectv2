@@ -25,9 +25,22 @@ Route::get('/profile/delete/{id?}', 'UserController@delete');
 
 Route::get('/admin/index', 'AdminController@user_index');
 
-Route::resource('post', 'PosterController', ['only' => ['create', 'show', 'edit', 'store']])->middleware('auth');
+//Poster (post)
+
+Route::resource('post', 'PosterController')->middleware('auth');
 Route::get('posts', 'PosterController@index');
-Route::post('/cat_update', 'CategoryController@update');
+Route::get('post/{id}/delete', 'PosterController@delete');
+
+//Photo
+
+Route::resource('photo', 'PhotoController');
+Route::get('post/{id}/photo/add', 'PosterController@create');
+Route::get('photo/{id}/edit', 'PosterController@edit');
+
+//Feedback
+
 Route::get('/feedback_store', 'FeedbackController@create');
 Route::post('/feedback_store', 'FeedbackController@store');
+
+Route::post('/cat_update', 'CategoryController@update');
 

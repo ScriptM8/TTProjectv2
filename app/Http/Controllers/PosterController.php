@@ -21,7 +21,7 @@ class PosterController extends Controller
             //if(true){
             $temp = Category::all();
             $category_list = array();
-            for ($i=0; $i < count($temp); $i++) { 
+            for ($i=0; $i < count($temp); $i++) {
                 $cat = array('id' => $temp[$i]->id ,'name' => $temp[$i]->name, 'checked' => false);
                 array_push($category_list, $cat);
             }
@@ -29,7 +29,7 @@ class PosterController extends Controller
         }
         $cat_list = session()->get('category_list');
         $none_checked = true;
-        for ($i=0; $i < count($cat_list); $i++) { 
+        for ($i=0; $i < count($cat_list); $i++) {
             if($cat_list[$i]['checked'] == true){
                 $none_checked = false;
             }
@@ -49,7 +49,7 @@ class PosterController extends Controller
             $posters = Poster::find($posters_id);
         }
 
-        return view('category_list', ['posters' => $posters, 
+        return view('category_list', ['posters' => $posters,
             'users' => User::all(),
             'cat_list' => session()->get('category_list')]);
     }
@@ -61,7 +61,7 @@ class PosterController extends Controller
      */
     public function create()
     {
-        return view('poster_create', ['user' => Auth::user(), 
+        return view('poster_create', ['user' => Auth::user(),
             'categories' => Category::all()]);
     }
 
@@ -83,9 +83,9 @@ class PosterController extends Controller
             'reward' => 'required|numeric|min:0',
             'phone' => 'required|digits_between:2,15',
             'email' => 'required|string|email|max:150'
-        );        
-        $this->validate($request, $rules); 
-        
+        );
+        $this->validate($request, $rules);
+
         $poster = new Poster();
         $poster->user()->associate(User::findOrFail($request['author_id']));
         $poster->title = $request['title'];
@@ -97,7 +97,7 @@ class PosterController extends Controller
         $poster->phone = $request['phone'];
         $poster->email = $request['email'];
         $poster->save();
-        
+
         return redirect('post/'.$poster->id);
     }
 
@@ -109,19 +109,22 @@ class PosterController extends Controller
      */
     public function show($id)
     {
-        $poster = Poster::findOrFail($id);
-        $category = Category::findOrFail($poster->category_id);
-        //if (Auth::check())
-        $currentuser = Auth::user();
+        $poster = Poster::find($id);
         if (!$poster) {
             return redirect('posts');
         }
-        
+
+        //if (Auth::check())
+        $currentuser = Auth::user();
+
+        $category = Category::findOrFail($poster->category_id);
+        $photos = Photo::where('poster_id',$id)->get();
         else {
-            return view('poster_show', ['poster' => $poster, 
+            return view('poster_show', ['poster' => $poster,
                 'user' => User::findOrFail($poster->author_id),
                 'currentuser' => $currentuser,
-                'category' => $category]);
+                'category' => $category,
+                'photos' => $photos]);
         }
     }
 
@@ -137,16 +140,16 @@ class PosterController extends Controller
         if (!$poster) {
             return redirect('posts'); // user posts or?
         }
-        
+
         $user = Auth::user();
         $role = $user->role;
         if ($role === 0 && $poster->author_id !== $user->id) {
             return redirect('posts'); // user posts or?
         }
-        
+
         else {
-            $user = User::find($poster->author_id);
-            return view('poster_edit', ['poster' => $poster, 
+            $user = User::findOrFail($poster->author_id);
+            return view('poster_edit', ['poster' => $poster,
                 'categories' => Category::all()]);
         }
     }
@@ -171,9 +174,9 @@ class PosterController extends Controller
             'reward' => 'required|numeric|min:0',
             'phone' => 'required|digits_between:2,15',
             'email' => 'required|string|email|max:150'
-        );        
-        $this->validate($request, $rules); 
-        
+        );
+        $this->validate($request, $rules);
+
         $poster = Poster::findOrFail($id);
         $poster->user()->associate(User::findOrFail($request['author_id']));
         $poster->title = $request['title'];
@@ -186,7 +189,7 @@ class PosterController extends Controller
         $poster->email = $request['email'];
         $poster->save();
         // vai te kkas cits?
-        
+
         return redirect('post/'.$poster->id)->withErrors(['msg' => 'Post updated!']);
     }
 
@@ -196,8 +199,26 @@ class PosterController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function delete($id)
+    {
+        $poster = Poster::find($id);
+        if (!$poster) {
+            return redirect('posts'); // user posts or?
+        }
+
+        $user = Auth::user();
+        $role = $user->role;
+        if ($role === 0 && $poster->author_id !== $user->id) {
+            return redirect('posts'); // user posts or?
+        }
+
+        else {
+            return view('poster_delete', ['poster' => $poster]);
+        }
+    }
     public function destroy($id)
     {
-        // to do?
+        Poster::findOrFail($id)->delete();
+        return redirect('posts');
     }
 }

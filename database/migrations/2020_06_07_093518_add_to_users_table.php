@@ -16,7 +16,7 @@ class AddToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('profile_img_path')->default('default_user.png');
             $table->double('rating')->default(0);
-            $table->integer('role');
+            $table->integer('role')->default(0);
         });
     }
 

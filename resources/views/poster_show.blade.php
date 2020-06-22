@@ -19,9 +19,15 @@
                     <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
                     <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
                 </div>
+
+                @if($photos->count() > 0)
+                @foreach($photos as $photo)
+{{--                    <img src="{{  }}">--}}
+                @endforeach
+                @endif
             </div>
         </div>
-            
+
         <div class="col-sm">
             <div class="card">
                 <h4 class="list-group-item list-group-item-primary">Author</h4>
@@ -32,17 +38,13 @@
                 </div>
             </div>
             <br>
-            {{--
+
             @if($role === 1 or $currentuser->id === $user->id)
-                {{ Form::open(array('action' => 'PosterController@done')) }}
-                {{ Form::hidden('poster_id', $poster->id) }}
-                {{ Form::submit('Mark as done', ['class' => 'btn btn-primary']) }}
-                {{ Form::close() }}
-                <br>
                 <a class="btn btn-primary" href="post/{{ $poster->id }}/edit">Edit post</a>
                 <br>
+                <a class="btn btn-primary" href="post/{{ $poster->id }}/delete">Delete post</a>
+                <br>
             @endif
-            --}}
         </div>
     </div>
 </div>

@@ -23,5 +23,18 @@ class CategorySeeder extends Seeder
         $precuParvadajumi = new Category();
         $precuParvadajumi->name = 'Preču pārvadājumi';
         $precuParvadajumi->save();
+
+        $majdzivniekuAprupe = new Category();
+        $majdzivniekuAprupe->name = 'Māksla';
+        $majdzivniekuAprupe->save();
+
+        $majdzivniekuAprupe = new Category();
+        $majdzivniekuAprupe->name = 'Bizness';
+        $majdzivniekuAprupe->save();
+
+        $majdzivniekuAprupe = new Category();
+        $majdzivniekuAprupe->name = 'Celtniecība';
+        $majdzivniekuAprupe->save();
+
     }
 }
