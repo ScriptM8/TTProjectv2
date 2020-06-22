@@ -1,7 +1,7 @@
 <?php
 
-use App\User;
 use Illuminate\Database\Seeder;
+use App\User;
 
 class UserSeeder extends Seeder
 {
@@ -12,7 +12,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
         $admin = new User();
         $admin->name = 'administrator';
         $admin->email = 'admin@haltura.lv';
@@ -20,12 +19,18 @@ class UserSeeder extends Seeder
         $admin->role = 1;
         $admin->save();
 
-        $user = new User();
-        $user->name = 'Jurka';
-        $user->email = 'jurka@gmail.com';
-        $user->password = bcrypt('jurka');
-        $user->role = 0;
-        $user->save();
+        $jurka = new User();
+        $jurka->name = 'Jurka';
+        $jurka->email = 'jurka@gmail.com';
+        $jurka->password = bcrypt('jurka');
+        $jurka->role = 0;
+        $jurka->save();
 
+        $laura = new User();
+        $laura->name = 'laura';
+        $laura->email = 'laura@gmail.com';
+        $laura->password = bcrypt('laura');
+        $laura->role = 0;
+        $laura->save();
     }
 }

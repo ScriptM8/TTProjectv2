@@ -15,8 +15,8 @@ class CreateFeedbacksTable extends Migration
     {
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('author_id')->references('id')->on('users');
-            $table->foreignId('target_id')->references('id')->on('users');
+            $table->foreignId('author_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('target_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('rating');
             $table->longText('description');
             $table->timestamps();

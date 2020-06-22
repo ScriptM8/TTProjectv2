@@ -1,8 +1,12 @@
+
 @extends('layouts.app')
 @section('content')
 
 <div class="container">
     <div class="row">
+        <div class="col-sm">
+            @yield('category_list')
+        </div>
         <div class="col-sm">
             <div class="list-group">
                 @foreach ( $posters as $poster )
@@ -17,5 +21,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection

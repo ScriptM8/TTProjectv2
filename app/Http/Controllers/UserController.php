@@ -15,11 +15,10 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function show()
+    public function show($id)
     {
-        $id = Auth::user()->id; // vajag pie show id?
         session()->put('target_id', $id);
-        return view('profile', ['feedbacks' => Feedbacks::where('target_id', Auth::user()->id)->get(),'user' => Auth::user(), 'role' => Auth::user()->role]);
+        return view('profile', ['feedbacks' => Feedbacks::where('target_id', Auth::user()->id)->get(),'profile_owner' => User::find($id), 'user' => Auth::user()]);
     }
 
     public function update_profile_img(Request $request)
@@ -35,15 +34,14 @@ class UserController extends Controller
         return back();
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $user = Auth::user();
-        Auth::logout();
+        $user = User::findOrFail($id);
         if ($user->profile_img_path != 'default_user.png') {
             Storage::delete('profile_img/' . $user->profile_img_path);
         }
-        User::where('id', $user->id)->delete();
-        return view('welcome');
+        User::where('id',$user->id)->delete();
+        return redirect('/');
     }
 
 }

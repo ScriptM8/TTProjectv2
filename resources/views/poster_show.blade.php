@@ -26,13 +26,13 @@
             <div class="card">
                 <h4 class="list-group-item list-group-item-primary">Author</h4>
                 <div class="card-body">
-                    <img src="{{ $user->profile_img_path }}.jpg" alt="Profile picture of {{ $user->name }}" width="100" height="100">
+                    <img src="/storage/profile_img/{{ $user->profile_img_path }}" alt="Profile picture of {{ $user->name }}" width="100" height="100">
                     <h4 class="card-text">{{ $user->name }}</h4>
                     <h4 class="card-text">{{ $user->rating }}</h4>
                 </div>
             </div>
             <br>
-            <!--
+            {{--
             @if($role === 1 or $currentuser->id === $user->id)
                 {{ Form::open(array('action' => 'PosterController@done')) }}
                 {{ Form::hidden('poster_id', $poster->id) }}
@@ -42,7 +42,7 @@
                 <a class="btn btn-primary" href="post/{{ $poster->id }}/edit">Edit post</a>
                 <br>
             @endif
-            -->
+            --}}
         </div>
     </div>
 </div>
