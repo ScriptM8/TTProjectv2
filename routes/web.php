@@ -18,18 +18,13 @@ Route::get('/', 'PosterController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile', 'UserController@show')->name('profile');
+
+Route::get('/profile/show/{id?}', 'UserController@show');
 Route::post('profile', 'UserController@update_profile_img');
-Route::get('/profile/delete', 'UserController@delete');
+Route::get('/profile/delete/{id?}', 'UserController@delete');
 
-Route::get('/profile/index', 'AdminController@user_index');
-Route::get('/profile/show/{id?}', 'AdminController@user_show');
-Route::get('/profile/delete/{id?}', 'AdminController@user_delete');
+Route::get('/admin/index', 'AdminController@user_index');
 
-Route::resource('post', 'PosterController', ['only' => ['index', 'create', 'show', 'edit']]);
+Route::resource('post', 'PosterController', ['only' => ['create', 'show', 'edit', 'store']])->middleware('auth');
 Route::get('posts', 'PosterController@index');
-
-//Feedbacks
-
-Route::get('/feedback_store', 'FeedbackController@create');
-Route::post('/feedback_store', 'FeedbackController@store');
+Route::post('/cat_update', 'CategoryController@update');

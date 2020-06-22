@@ -17,19 +17,4 @@ class AdminController extends Controller
     {
         return view('user_index', ['users' => User::all()]);
     }
-
-    public function user_show($id)
-    {
-        return view('profile', ['user' => User::findOrFail($id), 'role' => Auth::user()->role]);
-    }
-
-    public function user_delete($id)
-    {
-        $user = User::findOrFail($id);
-        if ($user->profile_img_path != 'default_user.png') {
-            Storage::delete('profile_img/'.$user->profile_img_path);
-        }
-        User::where('id',$user->id)->delete();
-        return view('welcome');
-    }
 }

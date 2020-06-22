@@ -30,7 +30,7 @@ foreach ($categories as $cat) {
                         
                         <br>
                         <h5 class="card-text">{{ Form::label('category_id', 'Category:') }}</h5>
-                        {{ Form::select('category_id', $catarray, null, ['placeholder' => 'Select category', 
+                        {{ Form::select('category_id', $catarr, null, ['placeholder' => 'Select category', 
                             'class' => 'form-control'.($errors-> has('category_id') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('category_id'))
                             <span class="invalid-feedback">

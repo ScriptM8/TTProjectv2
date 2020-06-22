@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedbacks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -15,11 +14,9 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function show()
+    public function show($id)
     {
-        $id = Auth::user()->id; // vajag pie show id?
-        session()->put('target_id', $id);
-        return view('profile', ['feedbacks' => Feedbacks::where('target_id', Auth::user()->id)->get(),'user' => Auth::user(), 'role' => Auth::user()->role]);
+        return view('profile', ['profile_owner' => User::find($id), 'user' => Auth::user()]);
     }
 
     public function update_profile_img(Request $request)
@@ -28,22 +25,21 @@ class UserController extends Controller
             'profile_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
         $user = Auth::user();
-        $imgName = $user->id . '_profileImg' . time() . '.' . request()->profile_img->getClientOriginalExtension();
-        $request->profile_img->storeAs('profile_img', $imgName);
+        $imgName = $user->id.'_profileImg'.time().'.'.request()->profile_img->getClientOriginalExtension();
+        $request->profile_img->storeAs('profile_img',$imgName);
         $user->profile_img_path = $imgName;
         $user->save();
         return back();
     }
 
-    public function delete()
+    public function delete($id)
     {
-        $user = Auth::user();
-        Auth::logout();
+        $user = User::findOrFail($id);
         if ($user->profile_img_path != 'default_user.png') {
-            Storage::delete('profile_img/' . $user->profile_img_path);
+            Storage::delete('profile_img/'.$user->profile_img_path);
         }
-        User::where('id', $user->id)->delete();
-        return view('welcome');
+        User::where('id',$user->id)->delete();
+        return redirect('/');
     }
-
+    
 }

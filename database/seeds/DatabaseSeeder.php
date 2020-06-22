@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,9 +12,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        $this->call(UserSeeder::class);
-        Schema::enableForeignKeyConstraints();
-
+        $this->call([
+            UserSeeder::class,
+            CategorySeeder::class,
+            PosterSeeder::class
+        ]);
     }
 }
