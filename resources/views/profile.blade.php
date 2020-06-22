@@ -16,7 +16,7 @@
                     @if ($user->role == 1)
                         <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">Delete profile</a>
                     @endif
-                    
+
                 </div>
                 <div class="col">
                     <img class="img-fluid rounded-circle" src="/storage/profile_img/{{ $profile_owner->profile_img_path }}"/>
@@ -31,6 +31,23 @@
                         </form>
                     @endif
                 </div>
+            </div>
+            @if($profile_owner != $user)
+            <a href="{{action('FeedbackController@create')}}" class="btn btn-info" role="button">Leave Feedback!</a>
+            @endif
+            @if($feedbacks)
+                <h1>Feedbacks:</h1>
+                <div class="row">
+                    <div class="col">
+                        @foreach($feedbacks as $feed)
+                            <div class="card-text">
+                                <a href="{{action('UserController@show',\App\User::find($feed->author_id)->id)}}">{{\App\User::find($feed->author_id)->name}}</a> left a rating <h2 style="display: inline">{{$feed->rating}}:</h2> {{$feed->description}}
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        </div>
             </div>
         </div>
     </div>

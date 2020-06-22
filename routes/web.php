@@ -28,3 +28,6 @@ Route::get('/admin/index', 'AdminController@user_index');
 Route::resource('post', 'PosterController', ['only' => ['create', 'show', 'edit', 'store']])->middleware('auth');
 Route::get('posts', 'PosterController@index');
 Route::post('/cat_update', 'CategoryController@update');
+Route::get('/feedback_store', 'FeedbackController@create');
+Route::post('/feedback_store', 'FeedbackController@store');
+

@@ -24,10 +24,10 @@ class FeedbackController extends Controller
     public function index()
     {
         //
-        return view('profile',
+        /*return view('profile',
             ['feedbacks' => Feedbacks::all()->where('target_id', Auth::user()->id)->get(),
                 'user' => Auth::user(),
-                'role' => Auth::user()->role]);
+                'role' => Auth::user()->role]);*/
     }
 
     /**
@@ -37,8 +37,6 @@ class FeedbackController extends Controller
      */
     public function create()
     {
-        //
-
         return view('/feedback_store', ['target_user' => session()->get('target_id')]);
     }
 
