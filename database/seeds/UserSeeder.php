@@ -12,6 +12,8 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        User::truncate();
+
         $admin = new User();
         $admin->name = 'administrator';
         $admin->email = 'admin@haltura.lv';

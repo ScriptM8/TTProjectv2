@@ -55,6 +55,19 @@ class PosterController extends Controller
             'cat_list' => session()->get('category_list')]);
     }
 
+    public function listown($user_id)
+    {
+        $user = User::find($user_id);
+        if (!$user) {
+            return redirect('posts');
+        }
+        $posters = Poster::where('author_id', $user_id)->get();
+
+        return view('user_list', ['posters' => $posters,
+            'users' => User::all(),
+            'user' => $user]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -115,8 +128,12 @@ class PosterController extends Controller
             return redirect('posts');
         }
 
-        //if (Auth::check())
-        $currentuser = Auth::user();
+        if (Auth::check()) {
+            $currentuser = Auth::user();
+        }
+        else {
+            $currentuser = NULL;
+        }
 
         $category = Category::findOrFail($poster->category_id);
         $photos = Photo::where('poster_id',$id)->get();
@@ -136,15 +153,21 @@ class PosterController extends Controller
      */
     public function edit($id)
     {
-        $poster = Poster::find($id);
-        if (!$poster) {
-            return redirect('posts'); // user posts or?
-        }
-
         $user = Auth::user();
         $role = $user->role;
+        $poster = Poster::find($id);
+
+        if (!$poster) {
+            if ($role === 0) {
+                return redirect('/profile/show/'.$user->id.'/posts');
+            }
+            else {
+                return redirect('posts');
+            }
+        }
+
         if ($role === 0 && $poster->author_id !== $user->id) {
-            return redirect('posts'); // user posts or?
+            return redirect('/profile/show/'.$user->id.'/posts');
         }
 
         else {
@@ -202,15 +225,21 @@ class PosterController extends Controller
      */
     public function delete($id)
     {
-        $poster = Poster::find($id);
-        if (!$poster) {
-            return redirect('posts'); // user posts or?
-        }
-
         $user = Auth::user();
         $role = $user->role;
+        $poster = Poster::find($id);
+
+        if (!$poster) {
+            if ($role === 0) {
+                return redirect('/profile/show/'.$user->id.'/posts');
+            }
+            else {
+                return redirect('posts');
+            }
+        }
+
         if ($role === 0 && $poster->author_id !== $user->id) {
-            return redirect('posts'); // user posts or?
+            return redirect('/profile/show/'.$user->id.'/posts');
         }
 
         else {
@@ -220,6 +249,13 @@ class PosterController extends Controller
     public function destroy($id)
     {
         Poster::findOrFail($id)->delete();
-        return redirect('posts');
+        $user = Auth::user();
+        $role = $user->role;
+        if ($role === 0) {
+            return redirect('/profile/show/'.$user->id.'/posts');
+        }
+        else {
+            return redirect('posts');
+        }
     }
 }

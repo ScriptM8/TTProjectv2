@@ -11,7 +11,7 @@
                     <h5 class="card-text">Email: {{ $profile_owner->email }}</h5>
                     <h5 class="card-text">Rating: {{ $profile_owner->rating }}/5</h5>
                     @if ($user->id == $profile_owner->id)
-                        <a href="/profile/delete" class="btn btn-info" role="button">Delete profile</a>
+                        <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">Delete profile</a>
                     @endif
                     @if ($user->role == 1)
                         <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">Delete profile</a>

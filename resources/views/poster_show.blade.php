@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
+<script type="application/javascript">
+    function showContacts() {
+        @if($currentuser)
+            document.getElementById("contacts").classList.remove('d-none');
+        @else
+            document.location.href="/login";
+        @endif
+    }
+</script>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-9">
@@ -16,13 +26,22 @@
                     <h5 class="card-text">Location: {{ $poster->location }}</h5>
                     <h5 class="card-text">Time: {{ $poster->time }}</h5>
                     <h5 class="card-text">Pay: {{ $poster->reward }}</h5>
-                    <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
-                    <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
+                    <br>
+                    <button class="btn btn-primary" onclick="showContacts()">Show contact information</button>
+                    <br>
+                    <div id="contacts" class="d-none">
+                        <br>
+                        <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
+                        <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
+                    </div>
 
+                    @if($currentuser)
                     @if($currentuser->id === $user->id)
+                        <br>
                         <br>
                         <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">Add a new photo</a>
                         <br>
+                    @endif
                     @endif
                     @if($photos->count() > 0)
                         <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}" alt="First photo for {{ $poster->title }}">
@@ -48,12 +67,14 @@
             </div>
             <br>
 
+            @if($currentuser)
             @if($currentuser->role === 1 or $currentuser->id === $user->id)
                 <a class="btn btn-primary" href="{{ $poster->id }}/edit">Edit post</a>
                 <br>
                 <br>
                 <a class="btn btn-primary" href="{{ $poster->id }}/delete">Delete post</a>
                 <br>
+            @endif
             @endif
         </div>
     </div>

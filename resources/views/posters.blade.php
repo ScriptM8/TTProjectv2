@@ -5,7 +5,11 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            @yield('category_list')
+            @isset($cat_list)
+                @yield('category_list')
+            @else
+                @yield('user_list')
+            @endisset
         </div>
         <div class="col-sm">
             <div class="list-group">

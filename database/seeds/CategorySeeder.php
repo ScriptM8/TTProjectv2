@@ -12,6 +12,8 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        Category::truncate();
+
         $darzaDarbi = new Category();
         $darzaDarbi->name = 'Dārza darbi';
         $darzaDarbi->save();
