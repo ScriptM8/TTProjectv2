@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-9">
             @if($errors->has('msg'))
                 <br>
                 <h4 class="text-success"><strong>{{ $errors->first('msg') }}</strong></h4>
@@ -20,6 +20,7 @@
                     <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
 
                     @if($currentuser->id === $user->id)
+                        <br>
                         <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">Add a new photo</a>
                         <br>
                     @endif
@@ -38,7 +39,7 @@
             <div class="card">
                 <h4 class="list-group-item list-group-item-primary">Author</h4>
                 <div class="card-body">
-                    <img src="{{ asset('storage/profile_img/'.$user->profile_img_path) }}" alt="Profile picture of {{ $user->name }}" width="100" height="100">
+                    <img src="{{ asset('storage/profile_img/'.$user->profile_img_path) }}" alt="Profile picture of {{ $user->name }}" class="rounded-circle" width="150" height="150">
                     <br>
                     <br>
                     <a href="/profile/show/{{ $user->id }}"><h4 class="card-text">{{ $user->name }}</h4></a>
