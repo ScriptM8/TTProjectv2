@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use App\Poster;
 use App\User;
 use Auth;
@@ -31,7 +32,7 @@ class PhotoController extends Controller
             return redirect('posts'); // user posts or?
         }
 
-        if ($poster->author_id === Auth::user()) {
+        if ($poster->author_id === Auth::user()->id) {
             return view('photo_create', ['poster' => $poster]);
         }
         else {
@@ -48,16 +49,18 @@ class PhotoController extends Controller
     public function store(Request $request)
     {
         $rules = array(
-            'path' => 'required|string',
-            'poster_id' => 'required|exists:specifications,id',
-            'short_description' => 'nullable|string'
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'poster_id' => 'required|exists:posters,id',
+            'description' => 'nullable|string'
         );
         $this->validate($request, $rules);
 
         $photo = new Photo();
-        $photo->path = $request['path'];
+        $path = $request['poster_id'].'_photo_'.time().'.'.$request['photo']->getClientOriginalExtension();
+        $request['photo']->storeAs('post_photos', $path);
+        $photo->path = $path;
         $photo->poster()->associate(Poster::findOrFail($request['poster_id']));
-        $photo->short_description = $request['short_description'];
+        $photo->short_description = $request['description'];
         $photo->save();
         return redirect('post/'.$photo->poster_id)->withErrors(['msg' => 'Photo added!']);
     }

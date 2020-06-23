@@ -34,8 +34,8 @@ Route::get('post/{id}/delete', 'PosterController@delete');
 //Photo
 
 Route::resource('photo', 'PhotoController');
-Route::get('post/{id}/photo/add', 'PosterController@create');
-Route::get('photo/{id}/edit', 'PosterController@edit');
+Route::get('post/{id}/photo/add', 'PhotoController@create');
+Route::get('photo/{id}/edit', 'PhotoController@edit');
 
 //Feedback
 

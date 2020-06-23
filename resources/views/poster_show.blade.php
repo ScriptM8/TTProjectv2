@@ -19,15 +19,17 @@
                     <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
                     <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
 
-                @if($currentuser->id === $user->id)
-                <a class="btn btn-primary" href="post/{{ $poster->id }}/photo/add">Add a new photo</a>
-                @endif
-                @if($photos->count() > 0)
-                    <img src="{{ $photos->first->path }}" alt="Photo for {{ $poster->title }}">
-                @foreach($photos as $photo)
-                    <img src="{{ $photo->path }}" alt="Photo for {{ $poster->title }}>
-                @endforeach
-                @endif
+                    @if($currentuser->id === $user->id)
+                        <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">Add a new photo</a>
+                        <br>
+                    @endif
+                    @if($photos->count() > 0)
+                        <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}" alt="First photo for {{ $poster->title }}">
+                        <br>
+                    @foreach($photos as $photo)
+                        <img src="{{ asset('storage/post_photos/'.$photo->path) }}" alt="Photo for {{ $poster->title }}">
+                    @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -36,8 +38,10 @@
             <div class="card">
                 <h4 class="list-group-item list-group-item-primary">Author</h4>
                 <div class="card-body">
-                    <img src="/storage/profile_img/{{ $user->profile_img_path }}" alt="Profile picture of {{ $user->name }}" width="100" height="100">
-                    <h4 class="card-text">{{ $user->name }}</h4>
+                    <img src="{{ asset('storage/profile_img/'.$user->profile_img_path) }}" alt="Profile picture of {{ $user->name }}" width="100" height="100">
+                    <br>
+                    <br>
+                    <a href="/profile/show/{{ $user->id }}"><h4 class="card-text">{{ $user->name }}</h4></a>
                     <h4 class="card-text">{{ $user->rating }}</h4>
                 </div>
             </div>

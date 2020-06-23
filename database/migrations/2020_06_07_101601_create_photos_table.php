@@ -17,7 +17,7 @@ class CreatePhotosTable extends Migration
             $table->id();
             $table->string('path');
             $table->foreignId('poster_id')->references('id')->on('posters')->onDelete('cascade');
-            $table->string('short_description');
+            $table->string('short_description')->nullable();
             $table->timestamps();
         });
     }
