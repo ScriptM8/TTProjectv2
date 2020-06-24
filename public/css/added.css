@@ -1,0 +1,16 @@
+
+.rating {
+    position: relative;
+}
+.star-bg {
+    width: 250px;
+    height: 50px;
+}
+.star-img {
+    width: 250px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
