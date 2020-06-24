@@ -9,6 +9,10 @@
             document.location.href="/login";
         @endif
     }
+    function changeCurrent(photo) {
+        document.getElementsByClassName("photo-curr")[0].src = "/storage/post_photos/"+photo['path'];
+        document.getElementsByClassName("desc-text")[0].innerHTML = photo['short_description'];
+    }
 </script>
 
 <div class="container">
@@ -41,30 +45,35 @@
                         <br>
                         <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">Add a new photo</a>
                         <br>
+                        <br>
                     @endif
                     @endif
                     @if($photos->count() > 0)
-                        <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}" alt="First photo for {{ $poster->title }}">
+                    <div id="curr-container">
+                        <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}"
+                             alt="Current photo for {{ $poster->title }}"
+                             class="photo-curr">
+                        <div class="photo-desc"><p class="desc-text">{{ $photos->first()->short_description }}</p></div>
                         <br>
+                    </div>
+                    <div id="photo-container">
                     @foreach($photos as $photo)
-                        <img src="{{ asset('storage/post_photos/'.$photo->path) }}" alt="Photo for {{ $poster->title }}">
+                        <div class="photo-col" onclick="changeCurrent({{ json_encode($photo) }})">
+                            <img src="{{ asset('/storage/post_photos/'.$photo->path) }}"
+                                 alt="Photo for {{ $poster->title }}"
+                                 class="photo-list">
+                            <div class="overlay"></div>
+                        </div>
                     @endforeach
+                    </div>
                     @endif
+                    <h4>hi</h4>
                 </div>
             </div>
         </div>
 
         <div class="col-sm">
-            <div class="card">
-                <h4 class="list-group-item list-group-item-primary">Author</h4>
-                <div class="card-body">
-                    <img src="{{ asset('storage/profile_img/'.$user->profile_img_path) }}" alt="Profile picture of {{ $user->name }}" class="rounded-circle" width="150" height="150">
-                    <br>
-                    <br>
-                    <a href="/profile/show/{{ $user->id }}"><h4 class="card-text">{{ $user->name }}</h4></a>
-                    <h4 class="card-text">{{ $user->rating }}</h4>
-                </div>
-            </div>
+            @include('user_info')
             <br>
 
             @if($currentuser)

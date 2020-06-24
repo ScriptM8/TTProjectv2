@@ -10,7 +10,7 @@
                         <h5 class="card-text">Name: {{ $profile_owner->name }}</h5>
                         <h5 class="card-text">Email: {{ $profile_owner->email }}</h5>
                         @if($feedbacks->count() > 0)
-                            <h5 class="card-text">Rating: {{ $profile_owner->rating }}/5</h5>
+                            <h5 class="card-text">Rating:</h5>
                             <div class="rating">
                                 <div class="progress star-bg">
                                     <div class="progress-bar bg-warning" role="progressbar"
@@ -19,6 +19,7 @@
                                          aria-valuemax="5"></div>
                                 </div>
                                 <img class="star-img" src="/images/stars.png" alt="stars"/>
+                                <h5 class="card-text star-text">{{ $profile_owner->rating }}/5</h5>
                             </div>
                         @else
                             <h5 class="card-text">Rating: no feedback yet.</h5>

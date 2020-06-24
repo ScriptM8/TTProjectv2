@@ -6,6 +6,7 @@ use App\Poster;
 use App\User;
 use App\Category;
 use App\Photo;
+use App\Feedbacks;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -63,9 +64,11 @@ class PosterController extends Controller
         }
         $posters = Poster::where('author_id', $user_id)->get();
 
-        return view('user_list', ['posters' => $posters,
+        $feedbcount = Feedbacks::where('target_id',$user->id)->count();
+        return view('posters', ['posters' => $posters,
             'users' => User::all(),
-            'user' => $user]);
+            'user' => $user,
+            'feedbcount' => $feedbcount]);
     }
 
     /**
@@ -137,11 +140,14 @@ class PosterController extends Controller
 
         $category = Category::findOrFail($poster->category_id);
         $photos = Photo::where('poster_id',$id)->get();
+        $user = User::findOrFail($poster->author_id);
+        $feedbcount = Feedbacks::where('target_id',$user->id)->count();
         return view('poster_show', ['poster' => $poster,
-            'user' => User::findOrFail($poster->author_id),
+            'user' => $user,
             'currentuser' => $currentuser,
             'category' => $category,
-            'photos' => $photos]);
+            'photos' => $photos,
+            'feedbcount' => $feedbcount]);
 
     }
 

@@ -8,7 +8,7 @@
             @isset($cat_list)
                 @yield('category_list')
             @else
-                @yield('user_list')
+                @include('user_info')
             @endisset
         </div>
         <div class="col-sm">
