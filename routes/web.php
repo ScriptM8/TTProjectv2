@@ -26,14 +26,12 @@ Route::get('/profile/delete/{id?}', 'UserController@delete');
 Route::get('/admin/index', 'AdminController@user_index');
 
 //Poster (post)
-
 Route::resource('post', 'PosterController');
 Route::get('posts', 'PosterController@index');
 Route::get('post/{id}/delete', 'PosterController@delete');
 Route::get('profile/show/{id}/posts', 'PosterController@listown');
 
 //Photo
-
 Route::resource('photo', 'PhotoController');
 Route::get('post/{id}/photo/add', 'PhotoController@create');
 Route::get('photo/{id}/delete', 'PhotoController@destroy');
@@ -44,6 +42,8 @@ Route::post('/feedback_store', 'FeedbackController@store');
 Route::get('/feedback_edit/{id}', 'FeedbackController@edit')->name('feedback.edit');
 Route::post('/feedback_edit/{id}', 'FeedbackController@update')->name('feedback.update');
 
-
+//??
 Route::post('/cat_update', 'CategoryController@update');
 
+//Localization
+Route::get('lang/{locale}','LanguageController');

@@ -116,3 +116,12 @@
     width: 75%;
     border: 1px solid lightgray;
 }
+
+
+.tiny-frame {
+    padding-top: 7px;
+    margin-right: 10px;
+}
+.tiny-icon {
+    width: 30px;
+}

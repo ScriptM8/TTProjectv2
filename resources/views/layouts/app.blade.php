@@ -42,6 +42,12 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item tiny-frame">
+                            <a href="/lang/lv"><img src="/images/lv.png" alt="LV" class="tiny-icon"></a>
+                        </li>
+                        <li class="nav-item tiny-frame">
+                            <a href="/lang/en"><img src="/images/en.png" alt="EN" class="tiny-icon"></a>
+                        </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -54,9 +60,9 @@
                             @endif
                         @else
                             @if(Auth::user()->role === 1)
-                                <li><a class="nav-link" href="/admin/index">{{ __('messages.All_users') }}</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/admin/index">{{ __('messages.All_users') }}</a></li>
                             @endif
-                            <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}">{{ __('messages.My_profile') }}</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}">{{ __('messages.My_profile') }}</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
