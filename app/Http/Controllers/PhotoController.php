@@ -67,7 +67,7 @@ class PhotoController extends Controller
         $photo->poster()->associate(Poster::findOrFail($request['poster_id']));
         $photo->short_description = $request['description'];
         $photo->save();
-        return redirect('post/'.$photo->poster_id)->withErrors(['msg' => 'Photo added!']);
+        return redirect('post/'.$photo->poster_id)->withErrors(['msg' => __('messages.Photo_added')]);
     }
 
     /**
@@ -123,7 +123,7 @@ class PhotoController extends Controller
         $photo = Photo::findOrFail($id);
         $photo->short_description = $request['short_description'];
         $photo->save();
-        return redirect('post/'.$photo->poster_id)->withErrors(['msg' => 'Photo updated!']);
+        return redirect('post/'.$photo->poster_id)->withErrors(['msg' => __('messages.Photo_updated')]);
     }
 
     /**
@@ -136,6 +136,6 @@ class PhotoController extends Controller
     {
         $poster = Photo::findOrFail($id)->poster_id;
         Photo::findOrFail($id)->delete();
-        return redirect('post/'.$poster->id)->withErrors(['msg' => 'Photo deleted!']);
+        return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Photo_deleted')]);
     }
 }

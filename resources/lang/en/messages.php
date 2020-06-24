@@ -10,13 +10,13 @@ return [
 
     'Categories' => 'Categories',
 
-    'Enter_0_5' => 'Please enter a number from 0 to 5',
-    'Leave_feedback_here' => 'Leave your feedback here!',
+    'Enter_0_5' => 'Please enter a number from 0 to 5:',
+    'Leave_feedback_here' => 'Leave your feedback here:',
     'Update_feedback' => 'Update feedback',
     'Add_feedback' => 'Add feedback',
 
     'Dashboard' => 'Dashboard',
-    'Welcome' => 'Hello and welcome to haltura.lv',
+    'Welcome' => 'Hello and welcome to haltura.lv!',
 
     'Add_photo_to' => 'Add photo to',
     'Add_file' => 'Add file:',
@@ -43,6 +43,10 @@ return [
 
     'Show_contact' => 'Show contact information',
     'Add_new_photo' => 'Add a new photo',
+    'Post_updated' => 'Post updated!',
+    'Photo_added' => 'Photo added!',
+    'Photo_updated' => 'Photo updated!',
+    'Photo_deleted' => 'Photo deleted!',
 
     'Profile' => 'Profile',
     'Name' => 'Name:',
@@ -60,7 +64,5 @@ return [
     'All_profiles_list' => 'All profiles list',
 
     'Author' => 'Author',
-    'All_classes' => 'All classes',
-    'added' => 'added',
 
 ];

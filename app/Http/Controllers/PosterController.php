@@ -219,7 +219,7 @@ class PosterController extends Controller
         $poster->save();
         // Poster::where('id', $id)->update($request->all());
 
-        return redirect('post/'.$poster->id)->withErrors(['msg' => 'Post updated!']);
+        return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Post_updated')]);
     }
 
     /**
