@@ -27,17 +27,16 @@ Route::get('/admin/index', 'AdminController@user_index');
 
 //Poster (post)
 
-Route::resource('post', 'PosterController', ['except' => ['show']])->middleware('auth');
+Route::resource('post', 'PosterController');
 Route::get('posts', 'PosterController@index');
-Route::get('post/{id}', 'PosterController@show');
-Route::get('post/{id}/delete', 'PosterController@delete')->middleware('auth');
-Route::get('profile/show/{id}/posts', 'PosterController@listown')->middleware('auth');
+Route::get('post/{id}/delete', 'PosterController@delete');
+Route::get('profile/show/{id}/posts', 'PosterController@listown');
 
 //Photo
 
 Route::resource('photo', 'PhotoController');
 Route::get('post/{id}/photo/add', 'PhotoController@create');
-Route::get('photo/{id}/edit', 'PhotoController@edit');
+Route::get('photo/{id}/delete', 'PhotoController@destroy');
 
 //Feedback
 Route::get('/feedback_store', 'FeedbackController@create');

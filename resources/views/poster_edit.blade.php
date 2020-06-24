@@ -12,7 +12,7 @@ foreach ($categories as $cat) {
     <div class="row">
         <div class="col-sm">
             <div class="card">
-                <h4 class="list-group-item list-group-item-primary">Edit post</h4>
+                <h4 class="list-group-item list-group-item-primary">{{ __('messages.Edit_post') }}</h4>
                 <div class="card-body">
                     <div>
                         {{ Form::open(array('action' => ['PosterController@update', $poster->id], 'method' => 'put')) }}
@@ -31,7 +31,7 @@ foreach ($categories as $cat) {
 
                         <br>
                         <h5 class="card-text">{{ Form::label('category_id', __('messages.Category')) }}</h5>
-                        {{ Form::select('category_id', $catarr, null, ['placeholder' => __('messages.Select_category'),
+                        {{ Form::select('category_id', $catarr, $poster->category_id, ['placeholder' => __('messages.Select_category'),
                             'class' => 'form-control'.($errors-> has('category_id') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('category_id'))
                             <span class="invalid-feedback">

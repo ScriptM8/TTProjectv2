@@ -32,16 +32,18 @@ class PhotoController extends Controller
      */
     public function create($poster_id)
     {
+        $user = Auth::user();
         $poster = Poster::find($poster_id);
+
         if (!$poster) {
-            return redirect('posts'); // user posts or?
+            return redirect('/profile/show/'.$user->id.'/posts');
         }
 
-        if ($poster->author_id === Auth::user()->id) {
+        if ($poster->author_id === $user->id) {
             return view('photo_create', ['poster' => $poster]);
         }
         else {
-            return redirect('posts');
+            return redirect('/profile/show/'.$user->id.'/posts');
         }
     }
 
@@ -89,20 +91,27 @@ class PhotoController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
+        $role = $user->role;
         $photo = Photo::find($id);
+
         if (!$photo) {
-            return redirect('posts'); // user posts or?
+            if ($role === 0) {
+                return redirect('/profile/show/'.$user->id.'/posts');
+            }
+            else {
+                return redirect('posts');
+            }
         }
 
         $poster = Poster::findOrFail($photo->poster_id);
-        $user = Auth::user();
-        $role = $user->role;
         if ($role === 0 && $poster->author_id !== $user->id) {
-            return redirect('posts'); // user posts or?
+            return redirect('/profile/show/'.$user->id.'/posts');
         }
 
         else {
-            return view('photo_edit', ['photo' => $photo, 'poster' => $poster]);
+            return view('photo_edit', ['photo' => $photo,
+                'poster' => $poster]);
         }
     }
 
@@ -116,13 +125,14 @@ class PhotoController extends Controller
     public function update(Request $request, $id)
     {
         $rules = array(
-            'short_description' => 'nullable|string'
+            'description' => 'nullable|string'
         );
         $this->validate($request, $rules);
 
         $photo = Photo::findOrFail($id);
-        $photo->short_description = $request['short_description'];
+        $photo->short_description = $request['description'];
         $photo->save();
+
         return redirect('post/'.$photo->poster_id)->withErrors(['msg' => __('messages.Photo_updated')]);
     }
 
@@ -134,8 +144,27 @@ class PhotoController extends Controller
      */
     public function destroy($id)
     {
-        $poster = Photo::findOrFail($id)->poster_id;
-        Photo::findOrFail($id)->delete();
-        return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Photo_deleted')]);
+        $user = Auth::user();
+        $role = $user->role;
+        $photo = Photo::find($id);
+
+        if (!$photo) {
+            if ($role === 0) {
+                return redirect('/profile/show/'.$user->id.'/posts');
+            }
+            else {
+                return redirect('posts');
+            }
+        }
+
+        $poster = Poster::findOrFail($photo->poster_id);
+        if ($role === 0 && $poster->author_id !== $user->id) {
+            return redirect('/profile/show/'.$user->id.'/posts');
+        }
+        else {
+            Photo::findOrFail($id)->delete();
+            return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Photo_deleted')]);
+        }
     }
+
 }

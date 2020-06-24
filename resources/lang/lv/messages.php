@@ -24,6 +24,9 @@ return [
     'Description' => 'Apraksts:',
     'Add_photo' => 'Pievienot attēlu',
 
+    'Edit_photo_for' => 'Rediģēt attēlu sludinājumam',
+    'Save_photo' => 'Saglabāt attēlu',
+
     'Create_new_post' => 'Izveidot jaunu sludinājumu',
     'Title' => 'Nosaukums:',
     'Category' => 'Kategorija:',
@@ -48,6 +51,7 @@ return [
     'Photo_added' => 'Attēls pievienots!',
     'Photo_updated' => 'Attēls atjaunināts!',
     'Photo_deleted' => 'Attēls izdzēsts!',
+    'Edit' => 'Rediģēt',
 
     'Profile' => 'Profils',
     'Name' => 'Vārds:',

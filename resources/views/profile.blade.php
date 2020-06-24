@@ -25,6 +25,7 @@
                             <h5 class="card-text">{{ __('messages.Rating') }} {{ __('messages.No_feedback') }}</h5>
                         @endif
                         @if ($user->role == 1 or $user->id == $profile_owner->id)
+                            <br>
                             <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">{{ __('messages.Delete_profile') }}</a>
                         @endif
                         <br>

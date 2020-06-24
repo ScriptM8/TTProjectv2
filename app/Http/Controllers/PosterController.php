@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PosterController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index','show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -217,7 +222,6 @@ class PosterController extends Controller
         $poster->phone = $request['phone'];
         $poster->email = $request['email'];
         $poster->save();
-        // Poster::where('id', $id)->update($request->all());
 
         return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Post_updated')]);
     }

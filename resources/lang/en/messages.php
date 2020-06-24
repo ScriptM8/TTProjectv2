@@ -23,6 +23,9 @@ return [
     'Description' => 'Description:',
     'Add_photo' => 'Add photo',
 
+    'Edit_photo_for' => 'Edit photo for',
+    'Save_photo' => 'Save photo',
+
     'Create_new_post' => 'Create new post',
     'Title' => 'Title:',
     'Category' => 'Category:',
@@ -47,6 +50,7 @@ return [
     'Photo_added' => 'Photo added!',
     'Photo_updated' => 'Photo updated!',
     'Photo_deleted' => 'Photo deleted!',
+    'Edit' => 'Edit',
 
     'Profile' => 'Profile',
     'Name' => 'Name:',
