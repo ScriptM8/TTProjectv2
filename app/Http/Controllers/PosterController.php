@@ -200,19 +200,18 @@ class PosterController extends Controller
         );
         $this->validate($request, $rules);
 
-//        $poster = Poster::findOrFail($id);
-//        $poster->user()->associate(User::findOrFail($request['author_id']));
-//        $poster->title = $request['title'];
-//        $poster->description = $request['description'];
-//        $poster->category()->associate(Category::findOrFail($request['category_id']));
-//        $poster->location = $request['location'];
-//        $poster->time = $request['time'];
-//        $poster->reward = $request['reward'];
-//        $poster->phone = $request['phone'];
-//        $poster->email = $request['email'];
-//        $poster->save();
-        // vai te kkas cits?
-        Poster::where('id', $id)->update($request->all());
+        $poster = Poster::findOrFail($id);
+        $poster->user()->associate(User::findOrFail($request['author_id']));
+        $poster->title = $request['title'];
+        $poster->description = $request['description'];
+        $poster->category()->associate(Category::findOrFail($request['category_id']));
+        $poster->location = $request['location'];
+        $poster->time = $request['time'];
+        $poster->reward = $request['reward'];
+        $poster->phone = $request['phone'];
+        $poster->email = $request['email'];
+        $poster->save();
+        // Poster::where('id', $id)->update($request->all());
 
         return redirect('post/'.$poster->id)->withErrors(['msg' => 'Post updated!']);
     }

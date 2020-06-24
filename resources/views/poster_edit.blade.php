@@ -15,7 +15,7 @@ foreach ($categories as $cat) {
                 <h4 class="list-group-item list-group-item-primary">Edit post</h4>
                 <div class="card-body">
                     <div>
-                        {{ Form::open(array('action' => ['PosterController@update', $poster->id])) }}
+                        {{ Form::open(array('action' => ['PosterController@update', $poster->id], 'method' => 'put')) }}
                         {{ Form::hidden('id', $poster->id) }}
                         {{ Form::hidden('author_id', $poster->author_id) }}
 
