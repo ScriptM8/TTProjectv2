@@ -10,7 +10,7 @@
 
                         <div class="col-md-6">
                             {{Form::label('rating', 'Please enter a number from 0 to 5')}}
-                            {{Form::number('rating',$feedback->rating,['class'=>'form-control'])}}
+                            {{Form::number('rating',$feedback->rating,['class'=>'form-control'.($errors-> has('rating') ? ' is-invalid' : '')])}}
                             @if ($errors->has('rating'))
                                 <span class="invalid-feedback">
                             <strong>{{ $errors->first('rating') }}</strong>
@@ -19,8 +19,7 @@
                         </div>
                         <div class="col-md-6">
                             {{Form::label('description', 'Leave your feedback here!')}}
-                            {{Form::textarea('description',$feedback->description,['class'=>'form-control'])}}
-
+                            {{Form::textarea('description',$feedback->description,['class'=>'form-control'.($errors-> has('description') ? ' is-invalid' : '')])}}
                             @if ($errors->has('description'))
                                 <span class="invalid-feedback">
                             <strong>{{ $errors->first('description') }}</strong>

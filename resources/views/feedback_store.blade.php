@@ -20,7 +20,7 @@
                         </div>
                         <div class="col-md-6">
                             {{Form::label('description', 'Leave your feedback here!')}}
-                            {{Form::textarea('description',null,['class'=>'form-control'.($errors-> has('rating') ? ' is-invalid' : '')])}}
+                            {{Form::textarea('description',null,['class'=>'form-control'.($errors-> has('description') ? ' is-invalid' : '')])}}
 
                             @if ($errors->has('description'))
                                 <span class="invalid-feedback">
