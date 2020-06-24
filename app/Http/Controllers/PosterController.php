@@ -147,13 +147,13 @@ class PosterController extends Controller
         $category = Category::findOrFail($poster->category_id);
         $photos = Photo::where('poster_id',$id)->get();
         $user = User::findOrFail($poster->author_id);
-        $feedbcount = Feedbacks::where('target_id',$user->id)->count();
+        $feedbacks = Feedbacks::where('target_id',$user->id)->get();
         return view('poster_show', ['poster' => $poster,
             'user' => $user,
             'currentuser' => $currentuser,
             'category' => $category,
             'photos' => $photos,
-            'feedbcount' => $feedbcount]);
+            'feedbacks' => $feedbacks]);
 
     }
 
