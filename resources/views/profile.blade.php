@@ -50,6 +50,7 @@
                     </div>
                 </div>
                 @if($profile_owner != $user and \App\Feedbacks::where([['author_id','=',$user->id],['target_id','=',$profile_owner->id]])->get()->count() < 1)
+                    <br>
                     <a href="{{action('FeedbackController@create')}}" class="btn btn-info" role="button">{{ __('messages.Leave_feedback') }}</a>
                 @endif
 
@@ -63,7 +64,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        @if($feedbacks)
+                        @if($feedbacks->count() > 0)
                             <div class="row">
                                 <div class="col">
                                     @foreach($feedbacks as $feed)
@@ -73,12 +74,15 @@
                                             <p style="display: inline; font-weight: bolder">{{$feed->rating}}:</p>
                                             {{$feed->description}}
                                             @if(\Illuminate\Support\Facades\Auth::user() == \App\User::find($feed->author_id))
-                                                <a class="float-right btn btn-info" style="display: inline" role="button" href="{{ action('FeedbackController@edit',$feed->id)}}">{{ __('messages.Edit_feedback') }}</a>
+                                                <a class="float-right btn btn-info" style="display: inline" role="button"
+                                                   href="{{ action('FeedbackController@edit',$feed->id)}}">{{ __('messages.Edit_feedback') }}</a>
                                             @endif
                                         </h5>
                                     @endforeach
                                 </div>
                             </div>
+                        @else
+                            <h5 class="card-text">{{ __('messages.No_feedback') }}</h5>
                         @endif
                     </div>
                 </div>

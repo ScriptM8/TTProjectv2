@@ -16,7 +16,7 @@
             </div>
             <img class="star-small star-img" src="/images/stars.png" alt="stars"/>
         </div>
-        @if($feedbcount > 0)
+        @if($feedbacks->count() > 0)
             <h5 class="card-text">{{ $user->rating }}/5</h5>
         @else
             <h5 class="card-text">{{ __('messages.No_feedback') }}</h5>

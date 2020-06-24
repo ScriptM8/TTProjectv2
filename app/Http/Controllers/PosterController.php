@@ -58,7 +58,8 @@ class PosterController extends Controller
 
         return view('category_list', ['posters' => $posters,
             'users' => User::all(),
-            'cat_list' => session()->get('category_list')]);
+            'cat_list' => session()->get('category_list'),
+            'feedbacks' => Feedbacks::all()]);
     }
 
     public function listown($user_id)
@@ -69,11 +70,11 @@ class PosterController extends Controller
         }
         $posters = Poster::where('author_id', $user_id)->get();
 
-        $feedbcount = Feedbacks::where('target_id',$user->id)->count();
+        $feedbacks = Feedbacks::where('target_id',$user->id)->get();
         return view('posters', ['posters' => $posters,
             'users' => User::all(),
             'user' => $user,
-            'feedbcount' => $feedbcount]);
+            'feedbacks' => $feedbacks]);
     }
 
     /**
@@ -100,7 +101,7 @@ class PosterController extends Controller
             'title' => 'required|string|min:5|max:150',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'location' => 'required|string|min:5|max:150',
+            'location' => 'required|string|min:3|max:150',
             'time' => 'required|string|min:2|max:150',
             'reward' => 'required|numeric|min:0',
             'phone' => 'required|digits_between:2,15',
@@ -200,7 +201,7 @@ class PosterController extends Controller
         $rules = array(
             'id' => 'required|exists:posters,id',
             'author_id' => 'required|exists:users,id',
-            'title' => 'required|string|min:5|max:150',
+            'title' => 'required|string|min:3|max:150',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
             'location' => 'required|string|min:5|max:150',

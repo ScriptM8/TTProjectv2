@@ -23,6 +23,15 @@
     width: 150px;
     height: 30px;
 }
+.star-tiny {
+    width: 100px;
+    height: 20px;
+    margin-left: 5px;
+    float: left;
+}
+#before-stars {
+    float: left;
+}
 
 
 
