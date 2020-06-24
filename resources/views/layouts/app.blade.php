@@ -34,9 +34,9 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="/post/create">Create a New Post</a></li>
+                        <li><a class="nav-link" href="/post/create">{{ __('messages.Create_post_nav') }}</a></li>
                         @auth
-                        <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}/posts">My Posts</a></li>
+                        <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}/posts">{{ __('messages.My_posts') }}</a></li>
                         @endauth
                     </ul>
 
@@ -45,18 +45,18 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('messages.Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('messages.Register') }}</a>
                                 </li>
                             @endif
                         @else
                             @if(Auth::user()->role === 1)
-                                <li><a class="nav-link" href="/admin/index">All Users</a></li>
+                                <li><a class="nav-link" href="/admin/index">{{ __('messages.All_users') }}</a></li>
                             @endif
-                            <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}">My Profile</a></li>
+                            <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}">{{ __('messages.My_profile') }}</a></li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -66,7 +66,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('messages.Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

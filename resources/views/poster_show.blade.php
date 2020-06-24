@@ -25,25 +25,25 @@
             <div class="card">
                 <h4 class="list-group-item list-group-item-primary">{{ $poster->title }}</h4>
                 <div class="card-body">
-                    <h5 class="card-text">Category: {{ $category->name }}</h5>
-                    <h5 class="card-text">Description: {{ $poster->description }}</h5>
-                    <h5 class="card-text">Location: {{ $poster->location }}</h5>
-                    <h5 class="card-text">Time: {{ $poster->time }}</h5>
-                    <h5 class="card-text">Pay: {{ $poster->reward }}</h5>
+                    <h5 class="card-text">{{ __('messages.Category') }} {{ $category->name }}</h5>
+                    <h5 class="card-text">{{ __('messages.Description') }} {{ $poster->description }}</h5>
+                    <h5 class="card-text">{{ __('messages.Location') }} {{ $poster->location }}</h5>
+                    <h5 class="card-text">{{ __('messages.Time') }} {{ $poster->time }}</h5>
+                    <h5 class="card-text">{{ __('messages.Pay') }} {{ $poster->reward }}</h5>
                     <br>
-                    <button class="btn btn-primary" onclick="showContacts()">Show contact information</button>
+                    <button class="btn btn-primary" onclick="showContacts()">{{ __('messages.Show_contact') }}</button>
                     <br>
                     <div id="contacts" class="d-none">
                         <br>
-                        <h5 class="card-text">Phone: {{ $poster->phone }}</h5>
-                        <h5 class="card-text">E-mail: {{ $poster->email }}</h5>
+                        <h5 class="card-text">__('messages.Phone') {{ $poster->phone }}</h5>
+                        <h5 class="card-text">__('messages.E_mail') {{ $poster->email }}</h5>
                     </div>
 
                     @if($currentuser)
                     @if($currentuser->id === $user->id)
                         <br>
                         <br>
-                        <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">Add a new photo</a>
+                        <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">{{ __('messages.Add_new_photo') }}</a>
                         <br>
                         <br>
                     @endif
@@ -78,10 +78,10 @@
 
             @if($currentuser)
             @if($currentuser->role === 1 or $currentuser->id === $user->id)
-                <a class="btn btn-primary" href="{{ $poster->id }}/edit">Edit post</a>
+                <a class="btn btn-primary" href="{{ $poster->id }}/edit">{{ __('messages.Edit_post') }}</a>
                 <br>
                 <br>
-                <a class="btn btn-primary" href="{{ $poster->id }}/delete">Delete post</a>
+                <a class="btn btn-primary" href="{{ $poster->id }}/delete">{{ __('messages.Delete_post') }}</a>
                 <br>
             @endif
             @endif

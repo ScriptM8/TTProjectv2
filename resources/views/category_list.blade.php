@@ -18,7 +18,7 @@
 
 @section('category_list')
     <div class="card">
-        <h4 class="list-group-item list-group-item-primary">Categories</h4>
+        <h4 class="list-group-item list-group-item-primary">{{ __('messages.Categories') }}</h4>
         <div class="card-body">
             <form action="index_update">
                 <div class="list-group">

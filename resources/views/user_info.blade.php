@@ -1,6 +1,6 @@
 
 <div class="card">
-    <h4 class="list-group-item list-group-item-primary">Author</h4>
+    <h4 class="list-group-item list-group-item-primary">{{ __('messages.Author') }}</h4>
     <div class="card-body">
         <img src="{{ asset('storage/profile_img/'.$user->profile_img_path) }}" alt="Profile picture of {{ $user->name }}" class="rounded-circle" width="150" height="150">
         <br>
@@ -19,7 +19,7 @@
         @if($feedbcount > 0)
             <h5 class="card-text">{{ $user->rating }}/5</h5>
         @else
-            <h5 class="card-text">No feedback yet.</h5>
+            <h5 class="card-text">{{ __('messages.No_feedback') }}</h5>
         @endif
     </div>
 </div>

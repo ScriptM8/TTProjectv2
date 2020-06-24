@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-sm">
             <div class="list-group">
-                <div class="list-group-item list-group-item-primary"><h4>All profiles list</h4></div>
+                <div class="list-group-item list-group-item-primary"><h4>{{ __('messages.All_profiles_list') }}</h4></div>
                 @foreach ($users as $user)
                     @if ($user->role == 0)
                         <div class="list-group-item">

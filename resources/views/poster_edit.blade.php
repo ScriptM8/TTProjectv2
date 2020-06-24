@@ -20,7 +20,7 @@ foreach ($categories as $cat) {
                         {{ Form::hidden('author_id', $poster->author_id) }}
 
 
-                        <h5 class="card-text">{{ Form::label('title', 'Title:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('title', __('messages.Title')) }}</h5>
                         {{ Form::text('title', $poster->title, ['class' =>
                             'form-control'.($errors-> has('title') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('title'))
@@ -30,8 +30,8 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('category_id', 'Category:') }}</h5>
-                        {{ Form::select('category_id', $catarr, $poster->category_id, ['placeholder' => 'Select category',
+                        <h5 class="card-text">{{ Form::label('category_id', __('messages.Category')) }}</h5>
+                        {{ Form::select('category_id', $catarr, null, ['placeholder' => __('messages.Select_category'),
                             'class' => 'form-control'.($errors-> has('category_id') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('category_id'))
                             <span class="invalid-feedback">
@@ -40,7 +40,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('description', 'Decription:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('description', __('messages.Description')) }}</h5>
                         {{ Form::textarea('description', $poster->description, ['class' =>
                             'form-control'.($errors-> has('description') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('description'))
@@ -50,7 +50,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('location', 'Location:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('location', __('messages.Location')) }}</h5>
                         {{ Form::text('location', $poster->location, ['class' =>
                             'form-control'.($errors-> has('location') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('location'))
@@ -60,7 +60,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('time', 'Time:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('time', __('messages.Time')) }}</h5>
                         {{ Form::text('time', $poster->time, ['class' =>
                             'form-control'.($errors-> has('time') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('time'))
@@ -70,7 +70,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('reward', 'Pay:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('reward', __('messages.Pay')) }}</h5>
                         {{ Form::text('reward', $poster->reward, ['class' =>
                             'form-control'.($errors-> has('reward') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('reward'))
@@ -80,7 +80,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('phone', 'Phone:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('phone', __('messages.Phone')) }}</h5>
                         {{ Form::text('phone', $poster->phone, ['class' =>
                             'form-control'.($errors-> has('phone') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('phone'))
@@ -90,7 +90,7 @@ foreach ($categories as $cat) {
                         @endif
 
                         <br>
-                        <h5 class="card-text">{{ Form::label('email', 'E-mail:') }}</h5>
+                        <h5 class="card-text">{{ Form::label('email', __('messages.E_mail')) }}</h5>
                         {{ Form::text('email', $poster->email, ['class' =>
                             'form-control'.($errors-> has('email') ? ' is-invalid' : '' )]) }}
                         @if ($errors->has('email'))
@@ -101,7 +101,7 @@ foreach ($categories as $cat) {
 
 
                         <br>
-                        {{ Form::submit('Save post', ['class' => 'btn btn-primary float-right']) }}
+                        {{ Form::submit(__('messages.Save_post'), ['class' => 'btn btn-primary float-right']) }}
 
                         {{ Form::close() }}
                     </div>
