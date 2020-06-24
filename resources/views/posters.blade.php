@@ -15,7 +15,7 @@
             <div class="list-group">
                 @foreach ( $posters as $poster )
                     <div class="list-group-item">
-                        <a href="post/{{ $poster->id }}">
+                        <a href="/post/{{ $poster->id }}">
                             <h4>{{ $poster->title }}</h4>
                             <h5>{{ $users->where('id', $poster->author_id)->first()->name }}</h5>
                         </a>

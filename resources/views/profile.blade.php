@@ -10,12 +10,12 @@
                     <h5 class="card-text">Name: {{ $profile_owner->name }}</h5>
                     <h5 class="card-text">Email: {{ $profile_owner->email }}</h5>
                     <h5 class="card-text">Rating: {{ $profile_owner->rating }}/5</h5>
-                    @if ($user->id == $profile_owner->id)
+                    @if ($user->role == 1 or $user->id == $profile_owner->id)
                         <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">Delete profile</a>
                     @endif
-                    @if ($user->role == 1)
-                        <a href="/profile/delete/{{ $profile_owner->id }}" class="btn btn-info" role="button">Delete profile</a>
-                    @endif
+                    <br>
+                    <br>
+                    <a href="/profile/show/{{ $profile_owner->id }}/posts" class="btn btn-info" role="button">Show posts by {{ $profile_owner->name }}</a>
 
                 </div>
                 <div class="col">
