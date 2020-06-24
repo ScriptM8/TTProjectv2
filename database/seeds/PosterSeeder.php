@@ -12,7 +12,7 @@ class PosterSeeder extends Seeder
      */
     public function run()
     {
-        Poster::truncate();
+        //Poster::truncate();
 
         Poster::create(array('id' => 1, 'author_id' => 1, 'title' => 'Sunīši', 'Description' => 'Izved manu mīlo pūkaino sunīti pastaigāties <3', 'category_id' => '2', 'location' => 'Daugavpils', 'time' => '12:00', 'reward' => '5.00', 'phone' => 6942069, 'email' => 'šarlatans@galva.te'));
         Poster::create(array('id' => 2, 'author_id' => 2, 'title' => 'Kakisi', 'Description' => 'Pabaro manu kakiti', 'category_id' => '2', 'location' => 'Rīga', 'time' => '18:00', 'reward' => '3.00', 'phone' => 420000, 'email' => 'kakitis@vista.hey'));

@@ -12,7 +12,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        User::truncate();
+        //User::truncate();
 
         $admin = new User();
         $admin->name = 'administrator';

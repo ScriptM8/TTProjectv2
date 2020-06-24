@@ -6,11 +6,12 @@
             <div class="col-md-8">
                 <div class="form-group row">
                     {{Form::open(['action' => 'FeedbackController@store', 'class' => 'form-horizontal'])}}
+
                     <div class="row">
 
                         <div class="col-md-6">
                             {{Form::label('rating', 'Please enter a number from 0 to 5')}}
-                            {{Form::number('rating',null,['class'=>'form-control'])}}
+                            {{Form::number('rating',null,['class'=>'form-control'.($errors-> has('rating') ? ' is-invalid' : '')])}}
                             @if ($errors->has('rating'))
                                 <span class="invalid-feedback">
                             <strong>{{ $errors->first('rating') }}</strong>
@@ -19,7 +20,7 @@
                         </div>
                         <div class="col-md-6">
                             {{Form::label('description', 'Leave your feedback here!')}}
-                            {{Form::textarea('description',null,['class'=>'form-control'])}}
+                            {{Form::textarea('description',null,['class'=>'form-control'.($errors-> has('rating') ? ' is-invalid' : '')])}}
 
                             @if ($errors->has('description'))
                                 <span class="invalid-feedback">
