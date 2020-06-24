@@ -49,14 +49,50 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         //
-        $request->merge(['author_id' => Auth::user()->id]);
-        $request->merge(['target_id' => session()->get('target_id')]);
+
         $rules = array(
             'rating' => 'required|numeric|min:0|max:5',
-            'description' => 'required|string|min:2',
+            'description' => 'required|string|min:0',
         );
         $this->validate($request, $rules);
+        $request->merge(['author_id' => Auth::user()->id]);
+        $request->merge(['target_id' => session()->get('target_id')]);
         $feed = new Feedbacks();
+        $feed->fill($request->all());
+        $feed->save();
+
+        $affectedUser = User::findOrFail(session()->get('target_id'));
+        $arr = Feedbacks::where('target_id', session()->get('target_id'))->get();
+        $rate = 0;
+        for ($i = 0; $i < count($arr); $i++)
+            $rate += $arr[$i]->rating;
+        $rate /= count($arr);
+        $rate = round($rate, 2);
+        $affectedUser->rating = $rate;
+        $affectedUser->save();
+        return redirect()->action('UserController@show', array(session()->get('target_id')));
+    }
+
+    public function edit($id)
+    {
+        if (Auth::user() and Auth::user()->id == Feedbacks::findOrFail($id)->author_id) {
+            $feedback = Feedbacks::findOrFail($id);
+            return view('feedback_edit', ['feedback' => $feedback]);
+        } else {
+            return view('home');
+        }
+    }
+
+    public function update(Request $request, $id)
+    {
+        $rules = array(
+            'rating' => 'required|numeric|min:0|max:5',
+            'description' => 'required|string|min:0',
+        );
+        $request->merge(['author_id' => Auth::user()->id]);
+        $request->merge(['target_id' => session()->get('target_id')]);
+        $this->validate($request, $rules);
+        $feed = Feedbacks::findOrFail($id);
         $feed->fill($request->all());
         $feed->save();
 
@@ -89,10 +125,7 @@ class FeedbackController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -101,10 +134,7 @@ class FeedbackController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

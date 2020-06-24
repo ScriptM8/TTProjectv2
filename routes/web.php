@@ -40,9 +40,11 @@ Route::get('post/{id}/photo/add', 'PhotoController@create');
 Route::get('photo/{id}/edit', 'PhotoController@edit');
 
 //Feedback
-
 Route::get('/feedback_store', 'FeedbackController@create');
 Route::post('/feedback_store', 'FeedbackController@store');
+Route::get('/feedback_edit/{id}', 'FeedbackController@edit')->name('feedback.edit');
+Route::post('/feedback_edit/{id}', 'FeedbackController@update')->name('feedback.update');
+
 
 Route::post('/cat_update', 'CategoryController@update');
 
