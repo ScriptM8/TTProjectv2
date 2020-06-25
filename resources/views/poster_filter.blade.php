@@ -33,6 +33,27 @@
                 </span>
             @endif
 
+            <br>
+            <h5 class="card-text">{{ Form::label('pay_from', __('messages.Pay_from_to')) }}</h5>
+            <div class="row">
+                <div class="col">
+                    {{ Form::text('pay_from', '', ['class' => 'form-control'.($errors->has('pay_from') ? ' is-invalid' : '')]) }}
+                </div>
+                <div class="col">
+                    {{ Form::text('pay_to', '', ['class' => 'form-control'.($errors->has('pay_to') ? ' is-invalid' : '')]) }}
+                </div>
+            </div>
+            @if ($errors->has('pay_from'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('pay_from') }}</strong>
+                </span>
+            @endif
+            @if ($errors->has('pay_to'))
+                <span class="invalid-feedback">
+                    <strong>{{ $errors->first('pay_to') }}</strong>
+                </span>
+            @endif
+
 
             <br>
             {{ Form::submit(__('messages.Apply'), ['class' => 'btn btn-primary']) }}

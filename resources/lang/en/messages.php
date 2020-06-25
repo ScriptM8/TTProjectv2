@@ -60,6 +60,7 @@ return [
     'Filter' => 'Filter',
     'Edited_after' => 'Edited after:',
     'Apply' => 'Apply',
+    'Pay_from_to' => 'Pay from/to:',
 
     //poster_show
     'Show_contact' => 'Show contact information',

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 @section('content')
 
@@ -11,8 +10,8 @@
             @else
                 @include('user_info')
             @endisset
+            <br>
         </div>
-        <br>
         <div class="col-sm-9">
             <div class="list-group">
                 @foreach ( $posters as $poster )
@@ -40,7 +39,7 @@
                             <div class="col-sm">
                                 <h6 class="card-text">{{ __('messages.Location') }} {{ $poster->location }}</h6>
                                 <h6 class="card-text">{{ __('messages.Time') }} {{ $poster->time }}</h6>
-                                <h6 class="card-text">{{ __('messages.Pay') }} {{ $poster->reward }}</h6>
+                                <h6 class="card-text">{{ __('messages.Pay') }} {{ $poster->reward }}&euro;</h6>
                             </div>
                         </div>
                     </div>

@@ -31,7 +31,7 @@
                     <h5 class="card-text">{{ __('messages.Description') }} {{ $poster->description }}</h5>
                     <h5 class="card-text">{{ __('messages.Location') }} {{ $poster->location }}</h5>
                     <h5 class="card-text">{{ __('messages.Time') }} {{ $poster->time }}</h5>
-                    <h5 class="card-text">{{ __('messages.Pay') }} {{ $poster->reward }}</h5>
+                    <h5 class="card-text">{{ __('messages.Pay') }} {{ $poster->reward }}&euro;</h5>
                     <br>
                     <button class="btn btn-primary" onclick="showContacts()">{{ __('messages.Show_contact') }}</button>
                     <br>

@@ -60,6 +60,7 @@ return [
     'Filter' => 'Filtrs',
     'Edited_after' => 'Rediģēts pēc:',
     'Apply' => 'Pielietot',
+    'Pay_from_to' => 'Samaksa no/līdz:',
 
     //poster_show
     'Show_contact' => 'Parādīt kontaktinformāciju',

@@ -15,7 +15,7 @@ class PosterController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show');
+        $this->middleware('auth')->except('index','show','postFilter');
     }
 
     /**
@@ -54,6 +54,8 @@ class PosterController extends Controller
             'title' => 'nullable|string',
             'location' => 'nullable|string',
             'edited' => 'nullable|date',
+            'pay_from' => 'nullable|numeric|min:0',
+            'pay_to' => 'nullable|numeric|min:0|gte:pay_from'
         );
         $this->validate($request, $rules);
 
@@ -68,6 +70,12 @@ class PosterController extends Controller
         }
         if ($request->edited != null) {
             $query = $query->where('updated_at','>',$request['edited']);
+        }
+        if ($request->pay_from != null) {
+            $query = $query->where('reward','>=',$request['pay_from']);
+        }
+        if ($request->pay_to != null) {
+            $query = $query->where('reward','<=',$request['pay_to']);
         }
         return view('category_list', ['posters' => $query->get(),
             'users' => User::all(),

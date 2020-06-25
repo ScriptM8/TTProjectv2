@@ -1,19 +1,3 @@
-<script>
-    function change(id)
-    {
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-        $.ajax({
-               type:'POST',
-               url:'/cat_update',
-               data:{id: id, _token: CSRF_TOKEN},
-               success:function(data) {
-                    //alert('gucci');
-                    location.reload();
-               }
-            });
-    }
-</script>
-
 @extends('posters')
 
 @section('category_list')
@@ -32,4 +16,21 @@
             </form>
         </div>
     </div>
+
+<script>
+    function change(id)
+    {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+            type:'POST',
+            url:'/cat_update',
+            data:{id: id, _token: CSRF_TOKEN},
+            success:function(data) {
+                //alert('gucci');
+                location.reload();
+            }
+        });
+    }
+</script>
+
 @stop
