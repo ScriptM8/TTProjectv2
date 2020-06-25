@@ -7,6 +7,7 @@ use App\Poster;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PhotoController extends Controller
 {
@@ -162,6 +163,7 @@ class PhotoController extends Controller
             return redirect('/profile/show/'.$user->id.'/posts');
         }
         else {
+            File::delete(public_path().'/storage/post_photos/'.$photo->path);
             Photo::findOrFail($id)->delete();
             return redirect('post/'.$poster->id)->withErrors(['msg' => __('messages.Photo_deleted')]);
         }

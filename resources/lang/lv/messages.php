@@ -23,7 +23,7 @@ return [
 
     //home
     'Dashboard' => 'Panelis',
-    'Welcome' => 'Sveicināti haltura.lv!',
+    'Welcome' => 'Sveicināti haltura.lv',
 
     //photo_create
     'Add_photo_to' => 'Pievienot attēlu sludinājumam',

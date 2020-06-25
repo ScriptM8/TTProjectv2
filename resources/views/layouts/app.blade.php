@@ -34,10 +34,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li><a class="nav-link" href="/post/create">{{ __('messages.Create_post_nav') }}</a></li>
                         @auth
+                        <li><a class="nav-link" href="/home">{{ __('messages.Dashboard') }}</a></li>
                         <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}/posts">{{ __('messages.My_posts') }}</a></li>
                         @endauth
+                        <li><a class="nav-link" href="/post/create">{{ __('messages.Create_post_nav') }}</a></li>
                         <li><a class="nav-link" href="{{action('UserController@getManual')}}">{{ __('messages.Download_manual') }}</a></li>
                     </ul>
 

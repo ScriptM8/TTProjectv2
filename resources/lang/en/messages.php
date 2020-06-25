@@ -23,7 +23,7 @@ return [
 
     //home
     'Dashboard' => 'Dashboard',
-    'Welcome' => 'Hello and welcome to haltura.lv!',
+    'Welcome' => 'Hello and welcome to haltura.lv',
 
     //photo_create
     'Add_photo_to' => 'Add photo to',
