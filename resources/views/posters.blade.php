@@ -12,6 +12,7 @@
                 @include('user_info')
             @endisset
         </div>
+        <br>
         <div class="col-sm-9">
             <div class="list-group">
                 @foreach ( $posters as $poster )

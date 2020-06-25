@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
-            PosterSeeder::class
+            PosterSeeder::class,
+            FeedbacksSeeder::class
         ]);
         Schema::enableForeignKeyConstraints();
 

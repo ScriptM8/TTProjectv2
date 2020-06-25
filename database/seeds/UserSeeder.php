@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         $admin->email = 'admin@haltura.lv';
         $admin->password = bcrypt('secret');
         $admin->role = 1;
+        $admin->rating = 1.5;
         $admin->save();
 
         $jurka = new User();
@@ -26,6 +27,7 @@ class UserSeeder extends Seeder
         $jurka->email = 'jurka@gmail.com';
         $jurka->password = bcrypt('jurka');
         $jurka->role = 0;
+        $jurka->rating = 4;
         $jurka->save();
 
         $laura = new User();
