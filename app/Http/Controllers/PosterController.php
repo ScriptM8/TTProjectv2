@@ -236,10 +236,10 @@ class PosterController extends Controller
         $rules = array(
             'id' => 'required|exists:posters,id',
             'author_id' => 'required|exists:users,id',
-            'title' => 'required|string|min:3|max:150',
+            'title' => 'required|string|min:5|max:150',
             'description' => 'required|string',
             'category_id' => 'required|exists:categories,id',
-            'location' => 'required|string|min:5|max:150',
+            'location' => 'required|string|min:3|max:150',
             'time' => 'required|string|min:2|max:150',
             'reward' => 'required|numeric|min:0',
             'phone' => 'required|digits_between:2,15',

@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile/show/{id?}', 'UserController@show');
 Route::post('profile', 'UserController@update_profile_img');
 Route::get('/profile/delete/{id?}', 'UserController@delete');
+Route::get('/get-manual', 'UserController@getManual');
 
 Route::get('/admin/index', 'AdminController@user_index');
 

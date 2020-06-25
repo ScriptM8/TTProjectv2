@@ -14,7 +14,11 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
-$app->useStoragePath( env( 'APP_STORAGE', base_path() . '/storage' ) );
+
+$app->useStoragePath(
+    env( 'APP_STORAGE', base_path() . '/storage' )
+);
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
@@ -39,6 +43,10 @@ $app->singleton(
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
+);
+
+$app->useStoragePath(
+    env( 'APP_STORAGE', base_path() . '/storage' )
 );
 
 /*

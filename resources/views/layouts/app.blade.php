@@ -38,6 +38,7 @@
                         @auth
                         <li><a class="nav-link" href="/profile/show/{{ Auth::user()->id }}/posts">{{ __('messages.My_posts') }}</a></li>
                         @endauth
+                        <li><a class="nav-link" href="{{action('UserController@getManual')}}">{{ __('messages.Download_manual') }}</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

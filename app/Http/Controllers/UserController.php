@@ -44,4 +44,12 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    public function getManual()
+    {
+        $headers = array(
+            'Content-Type: application/pdf',
+        );
+        return response()->download(public_path().'/manifesto.pdf', 'manual.pdf', $headers);
+    }
+
 }

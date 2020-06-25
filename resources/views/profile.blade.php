@@ -35,8 +35,10 @@
                     </div>
                     <div class="col">
                         <img class="img-fluid rounded-circle"
-                             src="/storage/profile_img/{{ $profile_owner->profile_img_path }}"/>
+                             src="/storage/profile_img/{{ $profile_owner->profile_img_path }}" style="width: 200px; height:200px;"/>
                         @if ($user->id == $profile_owner->id)
+                            <br>
+                            <br>
                             <form action="/profile" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">

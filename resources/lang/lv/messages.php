@@ -8,6 +8,7 @@ return [
     'Login' => 'Ienākt',
     'Register' => 'Reģistrēties',
     'Logout' => 'Iziet',
+    'Download_manual' => 'Lejupielādēt rokasgrāmatu',
 
     //category_list
     'Categories' => 'Kategorijas',
@@ -57,6 +58,7 @@ return [
 
     //poster_filter
     'Filter' => 'Filtrs',
+    'Edited_after' => 'Rediģēts pēc:',
     'Apply' => 'Pielietot',
 
     //poster_show

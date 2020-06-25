@@ -8,6 +8,7 @@ return [
     'Login' => 'Login',
     'Register' => 'Register',
     'Logout' => 'Logout',
+    'Download_manual' => 'Download Manual',
 
     //category_list
     'Categories' => 'Categories',
