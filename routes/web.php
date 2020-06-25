@@ -30,6 +30,7 @@ Route::resource('post', 'PosterController');
 Route::get('posts', 'PosterController@index');
 Route::get('post/{id}/delete', 'PosterController@delete');
 Route::get('profile/show/{id}/posts', 'PosterController@listown');
+Route::post('posts', 'PosterController@postFilter');
 
 //Photo
 Route::resource('photo', 'PhotoController');

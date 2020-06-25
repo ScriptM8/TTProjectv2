@@ -13,6 +13,12 @@ class LanguageMiddleware
         if (!empty($lang)) {
             App::setLocale($lang);
         }
+        else {
+            $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
+            if ($locale == 'lv') {
+                App::setLocale($locale);
+            }
+        }
         return $next($request);
     }
 }

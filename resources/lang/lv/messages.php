@@ -1,5 +1,6 @@
 <?php
 return [
+    //app
     'Create_post_nav' => 'Izveidot Jaunu Sludinājumu',
     'My_posts' => 'Mani Sludinājumi',
     'All_users' => 'Visi Lietotāji',
@@ -8,25 +9,32 @@ return [
     'Register' => 'Reģistrēties',
     'Logout' => 'Iziet',
 
+    //category_list
     'Categories' => 'Kategorijas',
 
+    //feedback_edit
     'Enter_0_5' => 'Lūdzu, ievadiet skaitli no 1 līdz 5:',
     'Leave_feedback_here' => 'Atstājiet atsauksmi šeit:',
     'Update_feedback' => 'Atjaunināt atsauksmi',
 
+    //feedback_store
     'Add_feedback' => 'Pievienot atsauksmi',
 
+    //home
     'Dashboard' => 'Panelis',
     'Welcome' => 'Sveicināti haltura.lv!',
 
+    //photo_create
     'Add_photo_to' => 'Pievienot attēlu sludinājumam',
     'Add_file' => 'Pievienot failu:',
     'Description' => 'Apraksts:',
     'Add_photo' => 'Pievienot attēlu',
 
+    //photo_edit
     'Edit_photo_for' => 'Rediģēt attēlu sludinājumam',
     'Save_photo' => 'Saglabāt attēlu',
 
+    //poster_create
     'Create_new_post' => 'Izveidot jaunu sludinājumu',
     'Title' => 'Nosaukums:',
     'Category' => 'Kategorija:',
@@ -38,13 +46,20 @@ return [
     'E_mail' => 'E-pasts:',
     'Create_post' => 'Izveidot sludinājumu',
 
+    //poster_delete
     'Delete_post' => 'Dzēst sludinājumu',
     'Photos_will_be_del' => 'Visi sludinājumam pievienotie attēli tiks izdzēsti.',
     'Delete' => 'Dzēst',
 
+    //poster_edit
     'Edit_post' => 'Rediģēt sludinājumu',
     'Save_post' => 'Saglabāt sludinājumu',
 
+    //poster_filter
+    'Filter' => 'Filtrs',
+    'Apply' => 'Pielietot',
+
+    //poster_show
     'Show_contact' => 'Parādīt kontaktinformāciju',
     'Add_new_photo' => 'Pievienot jaunu attēlu',
     'Post_updated' => 'Sludinājums atjaunināts!',
@@ -53,6 +68,7 @@ return [
     'Photo_deleted' => 'Attēls izdzēsts!',
     'Edit' => 'Rediģēt',
 
+    //profile
     'Profile' => 'Profils',
     'Name' => 'Vārds:',
     'Rating' => 'Reitings:',
@@ -66,8 +82,10 @@ return [
     'Left_a_rating' => 'novērtēja ar',
     'Edit_feedback' => 'Rediģēt atsauksmi',
 
+    //user_index
     'All_profiles_list' => 'Visi lietotāju profili',
 
+    //user_info
     'Author' => 'Autors',
 
 ];

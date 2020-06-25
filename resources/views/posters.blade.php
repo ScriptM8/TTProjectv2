@@ -7,6 +7,7 @@
         <div class="col-sm">
             @isset($cat_list)
                 @yield('category_list')
+                @include('poster_filter')
             @else
                 @include('user_info')
             @endisset
@@ -47,6 +48,5 @@
         </div>
     </div>
 </div>
-
 
 @endsection

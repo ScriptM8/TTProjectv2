@@ -7,6 +7,7 @@ use App\User;
 use App\Category;
 use App\Photo;
 use App\Feedbacks;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,58 @@ class PosterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        $posters = $this->byCategory();
+
+        return view('category_list', ['posters' => $posters,
+            'users' => User::all(),
+            'cat_list' => session()->get('category_list'),
+            'feedbacks' => Feedbacks::all()]);
+    }
+
+    public function listown($user_id)
+    {
+        $user = User::find($user_id);
+        if (!$user) {
+            return redirect('posts');
+        }
+        $posters = Poster::where('author_id', $user_id)->get();
+
+        $feedbacks = Feedbacks::where('target_id',$user->id)->get();
+        return view('posters', ['posters' => $posters,
+            'users' => User::all(),
+            'user' => $user,
+            'feedbacks' => $feedbacks]);
+    }
+
+    public function postFilter(Request $request)
+    {
+        $rules = array(
+            'title' => 'nullable|string',
+            'location' => 'nullable|string',
+            'edited' => 'nullable|date',
+        );
+        $this->validate($request, $rules);
+
+        $posters = $this->byCategory();
+
+        $query = Poster::whereIn('id',$posters->modelKeys());
+        if ($request->title != null) {
+            $query = $query->where('title', 'LIKE', '%'.$request['title'].'%');
+        }
+        if ($request->location != null) {
+            $query = $query->where('location', 'LIKE', '%'.$request['location'].'%');
+        }
+        if ($request->edited != null) {
+            $query = $query->where('updated_at','>',$request['edited']);
+        }
+        return view('category_list', ['posters' => $query->get(),
+            'users' => User::all(),
+            'cat_list' => session()->get('category_list'),
+            'feedbacks' => Feedbacks::all()]);
+    }
+
+    public function byCategory()
     {
         if (!session()->has('category_list')) {
             //if(true){
@@ -56,25 +109,7 @@ class PosterController extends Controller
             $posters = Poster::find($posters_id);
         }
 
-        return view('category_list', ['posters' => $posters,
-            'users' => User::all(),
-            'cat_list' => session()->get('category_list'),
-            'feedbacks' => Feedbacks::all()]);
-    }
-
-    public function listown($user_id)
-    {
-        $user = User::find($user_id);
-        if (!$user) {
-            return redirect('posts');
-        }
-        $posters = Poster::where('author_id', $user_id)->get();
-
-        $feedbacks = Feedbacks::where('target_id',$user->id)->get();
-        return view('posters', ['posters' => $posters,
-            'users' => User::all(),
-            'user' => $user,
-            'feedbacks' => $feedbacks]);
+        return $posters;
     }
 
     /**
