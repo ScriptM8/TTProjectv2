@@ -52,4 +52,17 @@ class UserController extends Controller
         return response()->download(public_path().'/manifesto.pdf', 'manual.pdf', $headers);
     }
 
+    public function togglePhotos()
+    {
+        $user = Auth::user();
+        if ($user->photos === 0) {
+            $user->photos = 1;
+        }
+        else {
+            $user->photos = 0;
+        }
+        $user->save();
+        return back();
+    }
+
 }

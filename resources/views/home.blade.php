@@ -19,6 +19,14 @@
                     @endforeach
 
                     <h4>{{ __('messages.Welcome') }}, {{ Auth::user()->name }}</h4>
+                    <br>
+                    <a class="btn btn-primary" href="{{action('UserController@togglePhotos')}}">
+                    @if(Auth::user()->photos === 0)
+                        {{ __('messages.Enable_photos') }}
+                    @else
+                        {{ __('messages.Disable_photos') }}
+                    @endif
+                    </a>
                 </div>
             </div>
         </div>

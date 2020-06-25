@@ -24,6 +24,8 @@ return [
     //home
     'Dashboard' => 'Panelis',
     'Welcome' => 'Sveicināti haltura.lv',
+    'Enable_photos' => 'Ieslēgt attēlus',
+    'Disable_photos' => 'Izslēgt attēlus',
 
     //photo_create
     'Add_photo_to' => 'Pievienot attēlu sludinājumam',

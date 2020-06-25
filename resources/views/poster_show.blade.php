@@ -41,41 +41,43 @@
                         <h5 class="card-text">{{ __('messages.E_mail') }} {{ $poster->email }}</h5>
                     </div>
 
-                    @if($currentuser)
-                    @if($currentuser->id === $user->id)
-                        <br>
-                        <br>
-                        <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">{{ __('messages.Add_new_photo') }}</a>
-                    @endif
-                    @endif
-                    @if($photos->count() > 0)
-                    <br>
-                    <br>
-                    <div id="curr-container">
-                        <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}"
-                             alt="Current photo for {{ $poster->title }}"
-                             class="photo-curr">
-                        <div class="photo-desc"><p class="desc-text">{{ $photos->first()->short_description }}</p></div>
+                    @if($photoshow === 1)
                         @if($currentuser)
-                        @if($currentuser->role === 1 or $currentuser->id === $user->id)
-                            <div class="photo-desc photo-panel">
-                                <a class="desc-text photo-links" id="photo-del-link" href="/photo/{{ $photos->first()->id }}/delete">{{ __('messages.Delete') }}</a>
-                                <a class="desc-text photo-links" id="photo-edit-link" href="/photo/{{ $photos->first()->id }}/edit">{{ __('messages.Edit') }}</a>
-                            </div>
+                        @if($currentuser->id === $user->id)
+                            <br>
+                            <br>
+                            <a class="btn btn-primary" href="{{ $poster->id }}/photo/add">{{ __('messages.Add_new_photo') }}</a>
                         @endif
                         @endif
+                        @if($photos->count() > 0)
                         <br>
-                    </div>
-                    <div id="photo-container">
-                    @foreach($photos as $photo)
-                        <div class="photo-col" onclick="changeCurrent({{ json_encode($photo) }})">
-                            <img src="{{ asset('/storage/post_photos/'.$photo->path) }}"
-                                 alt="Photo for {{ $poster->title }}"
-                                 class="photo-list">
-                            <div class="overlay"></div>
+                        <br>
+                        <div id="curr-container">
+                            <img src="{{ asset('storage/post_photos/'.$photos->first()->path) }}"
+                                 alt="Current photo for {{ $poster->title }}"
+                                 class="photo-curr">
+                            <div class="photo-desc"><p class="desc-text">{{ $photos->first()->short_description }}</p></div>
+                            @if($currentuser)
+                            @if($currentuser->role === 1 or $currentuser->id === $user->id)
+                                <div class="photo-desc photo-panel">
+                                    <a class="desc-text photo-links" id="photo-del-link" href="/photo/{{ $photos->first()->id }}/delete">{{ __('messages.Delete') }}</a>
+                                    <a class="desc-text photo-links" id="photo-edit-link" href="/photo/{{ $photos->first()->id }}/edit">{{ __('messages.Edit') }}</a>
+                                </div>
+                            @endif
+                            @endif
+                            <br>
                         </div>
-                    @endforeach
-                    </div>
+                        <div id="photo-container">
+                        @foreach($photos as $photo)
+                            <div class="photo-col" onclick="changeCurrent({{ json_encode($photo) }})">
+                                <img src="{{ asset('/storage/post_photos/'.$photo->path) }}"
+                                     alt="Photo for {{ $poster->title }}"
+                                     class="photo-list">
+                                <div class="overlay"></div>
+                            </div>
+                        @endforeach
+                        </div>
+                        @endif
                     @endif
                 </div>
             </div>

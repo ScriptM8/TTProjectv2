@@ -182,9 +182,11 @@ class PosterController extends Controller
 
         if (Auth::check()) {
             $currentuser = Auth::user();
+            $photoshow = $currentuser->photos;
         }
         else {
             $currentuser = NULL;
+            $photoshow = 1;
         }
 
         $category = Category::findOrFail($poster->category_id);
@@ -196,7 +198,8 @@ class PosterController extends Controller
             'currentuser' => $currentuser,
             'category' => $category,
             'photos' => $photos,
-            'feedbacks' => $feedbacks]);
+            'feedbacks' => $feedbacks,
+            'photoshow' => $photoshow]);
 
     }
 

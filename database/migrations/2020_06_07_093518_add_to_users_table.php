@@ -17,6 +17,7 @@ class AddToUsersTable extends Migration
             $table->string('profile_img_path')->default('default_user.png');
             $table->double('rating')->default(0);
             $table->integer('role')->default(0);
+            $table->integer('photos')->default(1);
         });
     }
 

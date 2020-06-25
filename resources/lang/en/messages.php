@@ -24,6 +24,8 @@ return [
     //home
     'Dashboard' => 'Dashboard',
     'Welcome' => 'Hello and welcome to haltura.lv',
+    'Enable_photos' => 'Enable photos',
+    'Disable_photos' => 'Disable photos',
 
     //photo_create
     'Add_photo_to' => 'Add photo to',
