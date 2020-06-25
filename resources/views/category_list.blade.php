@@ -10,6 +10,7 @@
                         <div class="list-item">
                             <input type="checkbox" id="{{ $category['id'] }}" name="{{ $category['name'] }}" onClick="change({{ $category['id'] }})" @if($category['checked'] === true) checked @endif)>
                             <label for="{{ $category['id'] }}">{{ $category['name'] }}</label>
+                            <img src="/images/{{ $category['icon_path'] }}" style="height: 40px; width: 40px;">
                         </div>
                     @endforeach
                 </div>

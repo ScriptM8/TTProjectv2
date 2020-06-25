@@ -90,7 +90,7 @@ class PosterController extends Controller
             $temp = Category::all();
             $category_list = array();
             for ($i=0; $i < count($temp); $i++) {
-                $cat = array('id' => $temp[$i]->id ,'name' => $temp[$i]->name, 'checked' => false);
+                $cat = array('id' => $temp[$i]->id, 'name' => $temp[$i]->name, 'icon_path' => $temp[$i]->icon_path, 'checked' => false);
                 array_push($category_list, $cat);
             }
             session()->put('category_list', $category_list);
